@@ -70,7 +70,7 @@ class Rooms(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
     code_id = db.Column(db.Integer, db.ForeignKey('code_table.id'))
-    url = db.Column(db.String)
+    url = db.Column(db.String, unique = True)
 
     user = db.relationship('User', back_populates='rooms')
     code = db.relationship('Codes', back_populates='rooms')
