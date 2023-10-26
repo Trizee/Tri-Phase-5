@@ -17,7 +17,7 @@ function EditorComponent(){
           <script>${js}</script>
         </html>
       `)
-    },250)
+    },500)
 
     return () => clearTimeout(timeout)
 
