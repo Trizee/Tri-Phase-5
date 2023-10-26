@@ -6,17 +6,18 @@ from config import db, bcrypt
 class User(db.Model, SerializerMixin):
     __tablename__ = "user_table"
 
-    serialize_rules = ('-password_hash', '-user_code_rel.user')
+    serialize_rules = ('-_password_hash', '-follows.follower', '-followed_by.following', '-rooms.user', '-user_code_rel.code','-code.user')
 
     id = db.Column(db.Integer, primary_key=True)
     pic = db.Column(db.String)
     username = db.Column(db.String, nullable=False, unique=True)
     _password_hash = db.Column(db.String, nullable=False)
 
-    user_code_rel = db.relationship('UserCodes', back_populates='user', cascade='all, delete-orphan')
+    
     rooms = db.relationship('Rooms', back_populates='user')
-    follows = db.relationship('Follows', foreign_keys='Follows.following_user', backref='follower', cascade='all, delete-orphan')
-    followed_by = db.relationship('Follows', foreign_keys='Follows.followed_user', backref='following_user_ref', cascade='all, delete-orphan')
+    follows = db.relationship('Follows', back_populates='follower', foreign_keys='Follows.following_user', cascade='all, delete-orphan')
+    followed_by = db.relationship('Follows', back_populates='following', foreign_keys='Follows.followed_user', cascade='all, delete-orphan')
+    code = db.relationship('Codes',back_populates='user')
 
     @hybrid_property
     def password_hash(self):
@@ -34,28 +35,31 @@ class User(db.Model, SerializerMixin):
 class Follows(db.Model, SerializerMixin):
     __tablename__ = 'follow_table'
 
-    serialize_rules = ('-follower', '-followed_user')
+    serialize_rules = ('-follower.follows', '-following.followed_by')
 
     id = db.Column(db.Integer, primary_key=True)
     following_user = db.Column(db.Integer, db.ForeignKey('user_table.id'))
     followed_user = db.Column(db.Integer, db.ForeignKey('user_table.id'))
 
+    follower = db.relationship('User', back_populates='follows', foreign_keys=[following_user])
+    following = db.relationship('User', back_populates='followed_by', foreign_keys=[followed_user])
+
+
 class Codes(db.Model, SerializerMixin):
     __tablename__ = 'code_table'
 
-    serialize_rules = ('-user_code_rel.code',)
+    serialize_rules = ('-rooms.code', '-version.code','-user.code')
 
     id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
     title = db.Column(db.String, nullable=False)
     description = db.Column(db.String)
-    html = db.Column(db.String)
-    css = db.Column(db.String)
-    js = db.Column(db.String)
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, onupdate=func.now())
 
-    user_code_rel = db.relationship('UserCodes', back_populates='code', cascade='all, delete-orphan')
     rooms = db.relationship('Rooms', back_populates='code')
+    version = db.relationship('Versions', back_populates='code')
+    user = db.relationship('User',back_populates='code')
 
 
 class Rooms(db.Model, SerializerMixin):
@@ -71,15 +75,15 @@ class Rooms(db.Model, SerializerMixin):
     user = db.relationship('User', back_populates='rooms')
     code = db.relationship('Codes', back_populates='rooms')
 
+class Versions(db.Model, SerializerMixin):
+    __tablename__ = 'versions_table'
 
-class UserCodes(db.Model, SerializerMixin):
-    __tablename__ = 'user_code_table'
-
-    serialize_rules = ('-user.rooms', '-code.rooms')
+    serialize_rules = ('-code.version',)
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
+    html = db.Column(db.String)
+    css = db.Column(db.String)
+    js = db.Column(db.String)
     code_id = db.Column(db.Integer, db.ForeignKey('code_table.id'))
 
-    user = db.relationship('User', back_populates='user_code_rel')
-    code = db.relationship('Codes', back_populates='user_code_rel')
+    code = db.relationship('Codes', back_populates='version')

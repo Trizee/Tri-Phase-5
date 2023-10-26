@@ -5,7 +5,7 @@ from random import randint, choice as rc
 
 # Remote library imports
 from faker import Faker
-from models import db, User, Follows, Codes, UserCodes, Rooms
+from models import db, User, Follows, Codes, Rooms, Versions
 
 # Local imports
 from app import app
@@ -19,8 +19,8 @@ if __name__ == '__main__':
         User.query.delete()
         Follows.query.delete()
         Codes.query.delete()
-        UserCodes.query.delete()
         Rooms.query.delete()
+        Versions.query.delete()
 
         print("Starting seed...")
         db.create_all()
@@ -37,65 +37,61 @@ if __name__ == '__main__':
             db.session.commit()
 
         print("Starting seeding Code...")
+        for i in range(5):
+            o = Codes(
+                title = fake.name(),
+                description = fake.name(),
+                user_id = randint(1,5)
+            )
+        db.session.add(o)
+        db.session.commit()
 
-        c1 = Codes(
-            title = 'code 1',
-            description = 'code 1',
+
+        print("Starting seeding Versions...")
+
+        c1 = Versions(
             html = '<h1>Hello</h1>',
             css = '''body {
             background-color: red;
             }''',
-            js= 'conosle.log(1)'
+            js= 'conosle.log(1)',
+            code_id = 1
         )
-        c2 = Codes(
-            title = 'code 2',
-            description = 'code 2',
+        c2 = Versions(
             html = '<h1>Hello2</h1>',
             css = '''body {
             background-color: red;
             }''',
-            js= 'conosle.log(1)'
+            js= 'conosle.log(1)',
+            code_id = 1
         )
-        c3 = Codes(
-            title = 'code 3',
-            description = 'code 3',
+        c3 = Versions(
             html = '<h1>Hello3</h1>',
             css = '''body {
             background-color: red;
             }''',
-            js= 'conosle.log(1)'
+            js= 'conosle.log(1)',
+            code_id = 2
         )
-        c4 = Codes(
-            title = 'code 4',
-            description = 'code 4',
+        c4 = Versions(
             html = '<h1>code 4</h1>',
             css = '''body {
             background-color: red;
             }''',
-            js= 'conosle.log(1)'
+            js= 'conosle.log(1)',
+            code_id = 2
         )
-        c5 = Codes(
-            title = 'code 5',
-            description = 'code 5',
+        c5 = Versions(
             html = '<h1>code 5</h1>',
             css = '''body {
             background-color: red;
             }''',
-            js= 'conosle.log(1)'
+            js= 'conosle.log(1)',
+            code_id = 4
         )
 
         db.session.add_all([c1,c2,c3,c4,c5])
         db.session.commit()
-
-        print("Starting seeding user's code...")  
-        for i in range(5):
-            uc = UserCodes(
-                user_id = randint(1,5),
-                code_id = randint(1,5)
-            )
-        
-            db.session.add(uc)
-            db.session.commit()
 
         print("Starting seeding rooms...")
         for i in range(5):
@@ -110,8 +106,8 @@ if __name__ == '__main__':
         print("Starting seeding follows...")
         for i in range(5):
             f = Follows(
-                following_user = randint(1,5),
-                followed_user = randint(1,5)
+                following_user = 1,
+                followed_user = 5
             )
             db.session.add(f)
             db.session.commit()
