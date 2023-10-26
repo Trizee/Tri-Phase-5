@@ -1,11 +1,12 @@
 from sqlalchemy_serializer import SerializerMixin
-from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.sql import func
 from config import db, bcrypt
 
 class User(db.Model, SerializerMixin):
     __tablename__ = "user_table"
+
+    serialize_rules = ('-password_hash', '-user_code_rel.user', '-follows_rel.user')
 
     id = db.Column(db.Integer, primary_key=True)
     pic = db.Column(db.String)
@@ -35,6 +36,8 @@ class User(db.Model, SerializerMixin):
 class Follows(db.Model, SerializerMixin):
     __tablename__ = 'follow_table'
 
+    serialize_rules = ('-user.follows_rel',)
+
     id = db.Column(db.Integer, primary_key=True)
     following_user = db.Column(db.Integer, db.ForeignKey('user_table.id'))
     followed_user = db.Column(db.Integer, db.ForeignKey('user_table.id'))
@@ -44,6 +47,8 @@ class Follows(db.Model, SerializerMixin):
 
 class Codes(db.Model, SerializerMixin):
     __tablename__ = 'code_table'
+
+    serialize_rules = ('-user_code_rel.code',)
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
@@ -60,6 +65,8 @@ class Codes(db.Model, SerializerMixin):
 class Rooms(db.Model, SerializerMixin):
     __tablename__ = 'room_table'
 
+    serialize_rules = ('-user.rooms','-code.rooms')
+
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
     code_id = db.Column(db.Integer, db.ForeignKey('code_table.id'))
@@ -71,6 +78,8 @@ class Rooms(db.Model, SerializerMixin):
 
 class UserCodes(db.Model, SerializerMixin):
     __tablename__ = 'user_code_table'
+
+    serialize_rules = ('-user.rooms','-code.rooms')
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))

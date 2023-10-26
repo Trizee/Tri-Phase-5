@@ -1,4 +1,4 @@
-from models import db, User, EventHosts, RSVP, Event, Comments
+from models import db, User
 from flask_restful import Api, Resource
 from flask_migrate import Migrate
 from flask import Flask, make_response, jsonify, request, session
