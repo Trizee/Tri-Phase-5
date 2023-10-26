@@ -22,6 +22,10 @@ function EditorComponent(){
     return () => clearTimeout(timeout)
 
   },[html,css,js])
+  console.log(html)
+  console.log(css)
+  console.log(js)
+
 
   return (
     <>
