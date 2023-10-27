@@ -47,8 +47,6 @@ function EditorComponent(){
     srcDoc = {srcDoc}
     title="output"
     sandbox="allow-scripts"
-    width= '100%'
-    height= '1000px'
     /> 
   </>
   )

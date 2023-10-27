@@ -3,6 +3,18 @@ body {
     padding: 0;
 }
 
+::-webkit-scrollbar{
+    width: 0.25rem;
+}
+
+::-webkit-scrollbar-track {
+    background: #1e1e24;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #6649b8;
+}
+
 .btn {
     align-items: center;
 }
@@ -10,3 +22,4 @@ body {
 #widget_container {
     background-color: black;
 }
+

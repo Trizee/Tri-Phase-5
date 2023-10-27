@@ -16,10 +16,10 @@
     "npm": "^10.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0",
     "y-monaco": "^0.1.4",
     "y-webrtc": "^10.2.5",
-    "yjs": "^13.6.8",
-    "react-router-dom": "^6.15.0"
+    "yjs": "^13.6.8"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

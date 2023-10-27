@@ -18,18 +18,17 @@ function EditorModule({value,set,room,lang}){
         const type = doc.getText(`${room}`)
         
         const binding = new MonacoBinding(type, editorRef.current.getModel(), new Set([editorRef.current]), provider.awareness)
+        
       }
 
     return (
-        <Editor 
-      height='25vh'
-      width='100vw'
+      <Editor 
       value={value}
       theme="vs-dark"
       language={lang}
       onMount={handleEditorDidMount}
       onChange={set}
-    />
+      />
     )
 }
 
