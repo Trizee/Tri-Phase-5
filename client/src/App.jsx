@@ -12,6 +12,7 @@ import EditorComponent from './Editor/Editor';
 import UploadWidget from "./UploadWidget";
 import './App.css'
 import Landing from "./Landing";
+import Login from "./LoginSignup/Login";
 
 function App() {
 
@@ -38,6 +39,8 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
         <Route index element = {<Landing />}/>
+        <Route path='/login' element={<Login />} />
+        <Route path='/editor' element={<EditorComponent />} />
       </Route>
     )
   )
