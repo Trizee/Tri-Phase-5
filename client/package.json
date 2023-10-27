@@ -18,7 +18,8 @@
     "react-dom": "^18.2.0",
     "y-monaco": "^0.1.4",
     "y-webrtc": "^10.2.5",
-    "yjs": "^13.6.8"
+    "yjs": "^13.6.8",
+    "react-router-dom": "^6.15.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

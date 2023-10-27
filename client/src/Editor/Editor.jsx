@@ -22,10 +22,6 @@ function EditorComponent(){
     return () => clearTimeout(timeout)
 
   },[html,css,js])
-  console.log(html)
-  console.log(css)
-  console.log(js)
-
 
   return (
     <>
@@ -47,14 +43,13 @@ function EditorComponent(){
     lang={'javascript'}
     room={'javascript'}
     />
-    <div>
-      <iframe 
-      srcDoc = {srcDoc}
-      title="output"
-      sandbox="allow-scripts"
-      width= '100%'
-      />
-    </div>
+    <iframe 
+    srcDoc = {srcDoc}
+    title="output"
+    sandbox="allow-scripts"
+    width= '100%'
+    height= '1000px'
+    /> 
   </>
   )
 }
