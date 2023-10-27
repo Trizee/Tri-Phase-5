@@ -25,6 +25,8 @@ function EditorComponent(){
 
   return (
     <>
+    <div class="grid grid-cols-2">
+    <div >
     <EditorModule 
     value={html}
     set={setHtml}
@@ -43,11 +45,21 @@ function EditorComponent(){
     lang={'javascript'}
     room={'javascript'}
     />
+    </div>
+    <div className="mockup-browser bg-base-300 rounded-none">
+    <div class="mockup-browser-toolbar">
+    <div class="input">YourWebsite.com</div>
+    </div>
     <iframe 
     srcDoc = {srcDoc}
     title="output"
     sandbox="allow-scripts"
+    height= '100%'
+    width= '100%'
     /> 
+    
+    </div>
+    </div>
   </>
   )
 }

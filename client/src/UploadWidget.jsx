@@ -45,10 +45,9 @@ function UploadWidget(){
 
     return (
         <>
-            <button className='bg-red-700' onClick={() => widgetRef.current.open()}>
-                add a THis is some more text
+            <button className='btn' onClick={() => widgetRef.current.open()}>
+                add a THis is some more
             </button>
-            <p className='bg-red-500'>This is a p tag</p>
         </>
     )
 }

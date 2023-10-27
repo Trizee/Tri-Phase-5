@@ -9,10 +9,10 @@ import { useEffect, useState } from "react";
 
 import RootLayout from "./Layout/RootLayout";
 import EditorComponent from './Editor/Editor';
-import UploadWidget from "./UploadWidget";
 import './App.css'
-import Landing from "./Landing";
+import Landing from "./LoginSignup/Landing";
 import Login from "./LoginSignup/Login";
+import Signup from "./LoginSignup/Signup";
 
 function App() {
 
@@ -40,6 +40,7 @@ function App() {
       <Route path="/" element={<RootLayout />}>
         <Route index element = {<Landing />}/>
         <Route path='/login' element={<Login />} />
+        <Route path='/Signup' element={<Signup />} />
         <Route path='/editor' element={<EditorComponent />} />
       </Route>
     )

@@ -23,7 +23,7 @@ function EditorModule({value,set,room,lang}){
 
     return (
       <Editor 
-      height='20vh'
+      height='33vh'
       value={value}
       theme="vs-dark"
       language={lang}
