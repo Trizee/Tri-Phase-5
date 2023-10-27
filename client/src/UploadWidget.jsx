@@ -11,10 +11,6 @@ function UploadWidget(){
             cloudName: 'dqnxw66wo',
             uploadPreset: 'Something',
             remove_header: true,
-            default_transformations: [
-                [{quality: "auto"},{fetch_format: "auto"}],
-                [{width: '400px', height: '400px', crop: "fill", gravity: "auto", radius: "max"}, {fetch_format: "auto", quality: "auto"}]
-              ],
             styles:{
             palette: {
                 window: "#FFF",
@@ -49,9 +45,10 @@ function UploadWidget(){
 
     return (
         <>
-            <button className='btn' onClick={() => widgetRef.current.open()}>
-                add a
+            <button className='bg-red-700' onClick={() => widgetRef.current.open()}>
+                add a THis is some more text
             </button>
+            <p className='bg-red-500'>This is a p tag</p>
         </>
     )
 }

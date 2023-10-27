@@ -11,6 +11,7 @@ import RootLayout from "./Layout/RootLayout";
 import EditorComponent from './Editor/Editor';
 import UploadWidget from "./UploadWidget";
 import './App.css'
+import Landing from "./Landing";
 
 function App() {
 
@@ -36,7 +37,7 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
-        <Route index element = {<UploadWidget />}/>
+        <Route index element = {<Landing />}/>
       </Route>
     )
   )

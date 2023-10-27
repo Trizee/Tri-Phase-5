@@ -1,6 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
     margin: 0;
     padding: 0;
+    background: linear-gradient(#343A40,#495057);
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 ::-webkit-scrollbar{
@@ -13,13 +21,5 @@ body {
 
 ::-webkit-scrollbar-thumb {
     background-color: #6649b8;
-}
-
-.btn {
-    align-items: center;
-}
-
-#widget_container {
-    background-color: black;
 }
 
