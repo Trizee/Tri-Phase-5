@@ -13,7 +13,7 @@ function UploadWidget(){
             remove_header: true,
             default_transformations: [
                 [{quality: "auto"},{fetch_format: "auto"}],
-                [{width: 80, height: 80, crop: "fill", gravity: "auto", radius: "max"}, {fetch_format: "auto", quality: "auto"}]
+                [{width: '400px', height: '400px', crop: "fill", gravity: "auto", radius: "max"}, {fetch_format: "auto", quality: "auto"}]
               ],
             styles:{
             palette: {
@@ -37,9 +37,9 @@ function UploadWidget(){
             fonts: {
                 "'Cute Font', cursive": "https://fonts.googleapis.com/css?family=Cute+Font",
             }},
-        }, function (result) {
+        }, function (error,result) {
             if (result.event == "success") {
-                setPicture(result.info.url)
+                console.log(result.info.url)
             }
             else {
                 console.log(result)

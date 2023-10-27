@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "cloudinary": "^1.41.0",
+    "react": "^18.2.0"
+  }
+}
