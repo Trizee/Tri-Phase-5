@@ -43,8 +43,8 @@ if __name__ == '__main__':
                 description = fake.name(),
                 user_id = randint(1,5)
             )
-        db.session.add(o)
-        db.session.commit()
+            db.session.add(o)
+            db.session.commit()
 
 
         print("Starting seeding Versions...")
