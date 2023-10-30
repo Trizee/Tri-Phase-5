@@ -1,5 +1,9 @@
+import { useNavigate } from "react-router-dom"
 
 function Landing(){
+
+    const navigate = useNavigate()
+
     return (
     <div className="hero min-h-screen -mt-16" style={{backgroundImage: 'url(https://i.pinimg.com/originals/73/c5/b2/73c5b2afc684e0e6bc1b9469e5120b88.png)'}}>
         <div className="hero-overlay bg-opacity-80"></div>
@@ -7,7 +11,7 @@ function Landing(){
             <div className="max-w-md">
             <h1 className="mb-5 text-5xl font-bold text-white" >Code Together, Build Together</h1>
             <p className="mb-5 text-white">Collaborate in real-time with fellow developers. Share your code, build projects together, and learn from a community passionate about coding.</p>
-            <button className="btn btn-primary bg-purple-700">Get Started</button>
+            <button className="btn btn-primary bg-purple-700" onClick={()=>navigate('login')}>Get Started</button>
             </div>
         </div>
     </div>

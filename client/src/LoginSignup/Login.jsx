@@ -1,5 +1,40 @@
+import { useNavigate } from "react-router-dom"
+import { useState } from "react";
 
-function Login(){
+function Login({setUser}){
+
+    const navigate = useNavigate()
+
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    function handleSubmit(e){
+      e.preventDefault()
+      fetch("/api/login",{
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              username,
+              password
+          })
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error("Network response error");
+          }
+          return response.json();
+      })
+      .then(data => {
+          setUser(data)
+          navigate('/')
+      })
+      .catch(error => {
+          console.log("error", error.message);
+      });
+    }
+
     return(
         <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-16 lg:px-8 bg-purple-800 -mt-16">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -13,19 +48,20 @@ function Login(){
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form className="space-y-6" action="#" method="POST" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-white">
                 Username
               </label>
               <div className="mt-2">
                 <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
+                  id="username"
+                  name="username"
+                  type="username"
+                  autoComplete="username"
+                  onChange={(e)=>setUsername(e.target.value)}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -47,8 +83,9 @@ function Login(){
                   name="password"
                   type="password"
                   autoComplete="current-password"
+                  onChange={(e)=>setPassword(e.target.value)}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -65,7 +102,7 @@ function Login(){
 
           <p className="mt-10 text-center text-sm text-white">
             Not a member?{' '}
-            <a href="#" className="font-semibold leading-6 text-indigo-300 hover:text-indigo-400">
+            <a onClick={()=>navigate('/signup')} className="font-semibold leading-6 text-indigo-300 hover:text-indigo-400">
               Join Today
             </a>
           </p>

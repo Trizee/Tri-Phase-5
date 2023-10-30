@@ -8,7 +8,6 @@ import {
 import { useEffect, useState } from "react";
 
 import RootLayout from "./Layout/RootLayout";
-import EditorComponent from './Editor/Editor';
 import './App.css'
 import Landing from "./LoginSignup/Landing";
 import Login from "./LoginSignup/Login";
@@ -36,11 +35,13 @@ function App() {
     setUser(null)
   }
 
+  console.log(user)
+
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<RootLayout />}>
+      <Route path="/" element={<RootLayout setUser={setUser}/>}>
         <Route index element = {<Landing />}/>
-        <Route path='/login' element={<Login />} />
+        <Route path='/login' element={<Login setUser={setUser}/>} />
         <Route path='/Signup' element={<Signup />} />
         <Route path='/editor' element={<Drawer />} />
       </Route>

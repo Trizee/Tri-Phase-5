@@ -30,6 +30,7 @@ if __name__ == '__main__':
             u = User(
                 username = fake.name(),
                 pic = fake.url(),
+                email = fake.url(),
                 password_hash = "123abc"
             )
 
@@ -107,7 +108,7 @@ if __name__ == '__main__':
         for i in range(5):
             f = Follows(
                 following_user = 1,
-                followed_user = 5
+                followed_user = 2
             )
             db.session.add(f)
             db.session.commit()

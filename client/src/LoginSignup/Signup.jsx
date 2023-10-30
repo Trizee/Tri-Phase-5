@@ -1,7 +1,10 @@
-
 import UploadWidget from '/src/UploadWidget.jsx'
+import { useNavigate } from 'react-router-dom'
 
 function Signup(){
+
+    const navigate = useNavigate()
+
     return(
         <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-16 lg:px-8 bg-grey-500 -mt-16">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -38,10 +41,10 @@ function Signup(){
               </label>
               <div className="mt-2">
                 <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
+                  id="username"
+                  name="username"
+                  type="username"
+                  autoComplete="username"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -74,10 +77,9 @@ function Signup(){
               </div>
               <div className="mt-2">
                 <input
-                  id="password"
-                  name="password"
+                  id="confirm-password"
+                  name="confirm-password"
                   type="password"
-                  autoComplete="current-password"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -95,7 +97,7 @@ function Signup(){
 
           <p className="mt-10 text-center text-sm text-white">
             Already a member?{' '}
-            <a href="#" className="font-semibold leading-6 text-purple-300 hover:text-indigo-400">
+            <a onClick={()=>{navigate('/login')}} className="font-semibold leading-6 text-purple-300 hover:text-indigo-400">
               Login
             </a>
           </p>
