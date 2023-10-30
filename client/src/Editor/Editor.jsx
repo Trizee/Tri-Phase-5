@@ -66,9 +66,9 @@ function EditorComponent(){
     
     <div className="grid grid-cols-4 transition-transform">
     <div className={editorCss()}>
-    <ul className="menu xl:menu-horizontal lg:min-w-max bg-base-300 w-full flex justify-center p-2 pb-4">
+    <ul className=" bg-base-300 w-full flex justify-center pt-3 pb-3">
         <label htmlFor="my-drawer" className="drawer-button">
-        <svg className="w-9 h-8 pt-2 fill-gray-500 stroke-2 cursor-pointer" xmlns="http://www.w3.org/2000/svg" 
+        <svg className="w-9 h-8 pt-2 fill-gray-500 stroke-2 cursor-pointer hover:fill-white" xmlns="http://www.w3.org/2000/svg" 
           viewBox="0 0 100 100">
         <g>
           <path d="M70,33.5H32c-1.104,0-2,0.896-2,2s0.896,2,2,2h38c1.104,0,2-0.896,2-2S71.104,33.5,70,33.5z"/>
