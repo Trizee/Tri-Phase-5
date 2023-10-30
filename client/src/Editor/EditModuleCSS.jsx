@@ -4,7 +4,7 @@ import { WebrtcProvider } from "y-webrtc"
 import { MonacoBinding } from "y-monaco"
 import { useRef } from 'react'
 
-function EditorModule({value,set,room,lang}){
+function EditorModuleCSS({value,set,active}){
 
     const editorRef = useRef(null)
 
@@ -14,8 +14,8 @@ function EditorModule({value,set,room,lang}){
     
         const doc = new Y.Doc()
         
-        const provider = new WebrtcProvider(`${room}`,doc)
-        const type = doc.getText(`${room}`)
+        const provider = new WebrtcProvider('css',doc)
+        const type = doc.getText('css')
         
         const binding = new MonacoBinding(type, editorRef.current.getModel(), new Set([editorRef.current]), provider.awareness)
         
@@ -23,14 +23,14 @@ function EditorModule({value,set,room,lang}){
 
     return (
       <Editor 
-      height='95vh'
+      height={active === 'css'?'95vh':'0'}
       value={value}
       theme="vs-dark"
-      language={lang}
+      language='css'
       onMount={handleEditorDidMount}
       onChange={set}
       />
     )
 }
 
-export default EditorModule
+export default EditorModuleCSS

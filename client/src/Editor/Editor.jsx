@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import EditorModule from "./EditModule";
+import EditorModuleHTML from "./EditModuleHTML";
+import EditorModuleCSS from "./EditModuleCSS";
+import EditorModuleJS from "./EditModuleJS";
 
 function EditorComponent(){
 
@@ -9,25 +11,7 @@ function EditorComponent(){
   const [srcDoc,setSrcDoc] = useState('')
   
   // Making useStates for switcher function
-  const [active,setActive] = useState('')
-  const [editor,setEditor] = useState(null)
-
-  useEffect(()=>{
-    setActive('html')
-    setEditor(<EditorModule value={html} set={setHtml} lang={'html'} room={'html'}/>)
-  },[])
-
-  useEffect(()=>{
-    if (active === 'css'){
-      setEditor(<EditorModule value={css} set={setCss} lang={'css'} room={'css'} />)
-    }
-    else if(active ==='js'){
-      setEditor(<EditorModule value={js} set={setJs} lang={'javascript'} room={'javascript'}/>)
-    }
-    else {
-      setEditor(<EditorModule value={html} set={setHtml} lang={'html'} room={'html'}/>)
-    }
-  },[active])
+  const [active,setActive] = useState('html')
   
   useEffect(()=>{
     const timeout = setTimeout(()=>{
@@ -56,7 +40,9 @@ function EditorComponent(){
         <a className={active === 'css'?'tab tab-bordered tab-active':'tab tab-bordered'} onClick={()=>setActive('css')}>CSS</a> 
         <a className={active === 'js'?'tab tab-bordered tab-active':'tab tab-bordered'} onClick={()=>setActive('js')}>JAVASCRIPT</a>
     </ul>
-    {editor}
+    <EditorModuleHTML value={html} set={setHtml} active={active}/>
+    <EditorModuleCSS value={css} set={setCss} active={active}/>
+    <EditorModuleJS  value={js} set={setJs} active={active}/>
     </div>
     <div className="mockup-browser bg-base-300 rounded-none">
     <div class="mockup-browser-toolbar">
