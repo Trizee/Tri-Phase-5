@@ -16,8 +16,6 @@ function EditorComponent(){
   // Use state for window expansion
   const [windowExpand,setWindowExpand] = useState(false)
   const [editorExpand,setEditorExpand] = useState(false)
-
-  console.log(editorExpand)
   
   useEffect(()=>{
     const timeout = setTimeout(()=>{
@@ -66,12 +64,12 @@ function EditorComponent(){
   return (
     <>
     
-    <div class="grid grid-cols-4 transition-transform">
+    <div className="grid grid-cols-4 transition-transform">
     <div className={editorCss()}>
-    <ul class="menu xl:menu-horizontal lg:min-w-max bg-base-300 w-full flex justify-center p-2 pb-4">
+    <ul className="menu xl:menu-horizontal lg:min-w-max bg-base-300 w-full flex justify-center p-2 pb-4">
         <label htmlFor="my-drawer" className="drawer-button">
-        <svg className="w-9 h-8 pt-2 fill-gray-500 stroke-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-          viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+        <svg className="w-9 h-8 pt-2 fill-gray-500 stroke-2 cursor-pointer" xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 100 100">
         <g>
           <path d="M70,33.5H32c-1.104,0-2,0.896-2,2s0.896,2,2,2h38c1.104,0,2-0.896,2-2S71.104,33.5,70,33.5z"/>
           <path d="M70,48.5H32c-1.104,0-2,0.896-2,2s0.896,2,2,2h38c1.104,0,2-0.896,2-2S71.104,48.5,70,48.5z"/>
@@ -91,14 +89,14 @@ function EditorComponent(){
     <EditorModuleJS  value={js} set={setJs} active={active}/>
     </div>
     <div className={windowCss()}>
-    <div class="mockup-browser-toolbar" >
-    <div class="input">YourWebsite.com</div>
+    <div className="mockup-browser-toolbar" >
+    <div className="input">YourWebsite.com</div>
     <Expand set={setWindowExpand}/>
     </div>
     <iframe 
     srcDoc = {srcDoc}
     title="output"
-    sandbox="allow-scripts"
+    sandbox="allow-scripts allow-forms"
     height= '100%'
     width= '100%'
     /> 
