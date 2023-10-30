@@ -1,4 +1,3 @@
-import UploadWidget from '/src/UploadWidget.jsx'
 import { useNavigate } from 'react-router-dom'
 
 function Signup(){

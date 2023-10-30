@@ -9,10 +9,11 @@ import { useEffect, useState } from "react";
 
 import RootLayout from "./Layout/RootLayout";
 import './App.css'
-import Landing from "./LoginSignup/Landing";
+import Landing from "./Pages/Landing";
 import Login from "./LoginSignup/Login";
 import Signup from "./LoginSignup/Signup";
 import Drawer from "./Editor/DrawerContainer";
+import About from "./Pages/About";
 
 function App() {
 
@@ -44,6 +45,7 @@ function App() {
         <Route path='/login' element={<Login setUser={setUser}/>} />
         <Route path='/Signup' element={<Signup />} />
         <Route path='/editor' element={<Drawer />} />
+        <Route path='/about' element={<About />} />
       </Route>
     )
   )
