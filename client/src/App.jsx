@@ -13,6 +13,7 @@ import './App.css'
 import Landing from "./LoginSignup/Landing";
 import Login from "./LoginSignup/Login";
 import Signup from "./LoginSignup/Signup";
+import Drawer from "./Editor/DrawerContainer";
 
 function App() {
 
@@ -41,7 +42,7 @@ function App() {
         <Route index element = {<Landing />}/>
         <Route path='/login' element={<Login />} />
         <Route path='/Signup' element={<Signup />} />
-        <Route path='/editor' element={<EditorComponent />} />
+        <Route path='/editor' element={<Drawer />} />
       </Route>
     )
   )
