@@ -16,6 +16,7 @@ import Drawer from "./Editor/DrawerContainer";
 import About from "./Pages/About";
 import PageNotFound from "./Pages/404";
 import HomePage from "./Homepage/HomepageContainer";
+import ProfilePage from "./Pages/Profile";
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
         <Route path='/editor' element={<Drawer />} />
         <Route path='/about' element={<About />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>
     )

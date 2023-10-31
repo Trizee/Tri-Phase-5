@@ -11,7 +11,7 @@ function Landing(){
             <div className="max-w-md">
             <h1 className="mb-5 text-5xl font-bold text-white" >Code Together, Build Together</h1>
             <p className="mb-5 text-white">Collaborate in real-time with fellow developers. Share your code, build projects together, and learn from a community passionate about coding.</p>
-            <button className="btn btn-primary bg-purple-700" onClick={()=>navigate('login')}>Get Started</button>
+            <button className="btn bg-purple-800 hover:bg-purple-700 text-white" onClick={()=>navigate('login')}>Get Started</button>
             </div>
         </div>
     </div>
