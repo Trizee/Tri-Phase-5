@@ -47,7 +47,7 @@ function EditorComponent(){
 
   function windowCss(){
     if(editorExpand === false && windowExpand === false){
-      return "mockup-browser bg-base-300 rounded-none col-span-2"
+      return "mockup-browser bg-base-300 rounded-none col-span-2 "
     }
     else if(windowExpand === true){
       return "mockup-browser bg-base-300 rounded-none col-span-4 h-screen"
@@ -64,7 +64,7 @@ function EditorComponent(){
   return (
     <>
     
-    <div className="grid grid-cols-4 transition-transform">
+    <div className="grid grid-cols-4 grid-flow-row transition-transform">
     <div className={editorCss()}>
     <ul className=" bg-base-300 w-full flex justify-center pt-3 pb-3">
         <label htmlFor="my-drawer" className="drawer-button">

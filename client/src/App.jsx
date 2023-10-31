@@ -29,21 +29,12 @@ function App() {
       )
   },[])
 
-  function handleLogout(){
-    fetch("/api/logout",{
-      method: 'DELETE'
-    })
-    setUser(null)
-  }
-
-  console.log(user)
-
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<RootLayout setUser={setUser}/>}>
+      <Route path="/" element={<RootLayout setUser={setUser} user={user} />}>
         <Route index element = {<Landing />}/>
         <Route path='/login' element={<Login setUser={setUser}/>} />
-        <Route path='/Signup' element={<Signup />} />
+        <Route path='/Signup' element={<Signup setUser={user}/>} />
         <Route path='/editor' element={<Drawer />} />
         <Route path='/about' element={<About />} />
       </Route>

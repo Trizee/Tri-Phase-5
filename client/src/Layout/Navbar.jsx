@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import LogoutPage from "../LoginSignup/Logout"
 
-function Navbar({setUser}){
+function Navbar({setUser,user}){
 
     const navigate = useNavigate()
 
@@ -26,7 +26,7 @@ function Navbar({setUser}){
             </label>
             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                 <li><a>Homepage</a></li>
-                <li><a>Portfolio</a></li>
+                {user?<li><a>Portfolio</a></li>:null}
                 <li><a onClick={()=>{navigate('/about')}}>About</a></li>
             </ul>
             </div>
@@ -43,10 +43,12 @@ function Navbar({setUser}){
             <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
-                <img src="https://assets.nick.com/uri/mgid:arc:imageassetref:shared.nick.us:a625d441-bbbf-42c8-9927-6a0157aac911?quality=0.7&gen=ntrn&legacyStatusCode=true" />
+                <img src={user ? user.pic : 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/1024px-Windows_10_Default_Profile_Picture.svg.png'} />
                 </div>
             </label>
             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[50] p-2 shadow bg-base-100 rounded-box w-52">
+                {user ?
+                <>
                 <li>
                 <a className="justify-between">
                     Profile
@@ -55,6 +57,12 @@ function Navbar({setUser}){
                 </li>
                 <li><a>My Projects</a></li>
                 <li><a onClick={logoutScreen}>Logout</a></li>
+                </>:
+                <>
+                <li><a onClick={()=>navigate('/signup')}>Create Account</a></li>
+                <li><a onClick={()=>navigate('/login')}>Login</a></li>
+                </>
+                }
                 <LogoutPage />
             </ul>
             </div>
