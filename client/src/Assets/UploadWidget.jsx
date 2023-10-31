@@ -13,7 +13,7 @@ function UploadWidget({setPic,pic}){
             remove_header: true,
             styles:{
             palette: {
-                window: "#FFF",
+                window: "#90A0B3",
                 windowBorder: "#90A0B3",
                 tabIcon: "#0E2F5A",
                 menuIcons: "#5A616A",
@@ -26,9 +26,6 @@ function UploadWidget({setPic,pic}){
                 inProgress: "#0078FF",
                 complete: "#20B832",
                 sourceBg: "#E4EBF1",
-            },
-            frame: {
-                background: "#0E2F5B99"
             },
             fonts: {
                 "'Cute Font', cursive": "https://fonts.googleapis.com/css?family=Cute+Font",
