@@ -26,7 +26,7 @@ function Navbar({setUser,user}){
             </label>
             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                 <li><a onClick={()=>{navigate('/home')}}>Homepage</a></li>
-                {user?<li><a>Portfolio</a></li>:null}
+                {user?<li><a>Friends</a></li>:null}
                 <li><a onClick={()=>{navigate('/about')}}>About</a></li>
             </ul>
             </div>

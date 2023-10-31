@@ -37,7 +37,7 @@ function App() {
       <Route path="/" element={<RootLayout setUser={setUser} user={user} />}>
         <Route index element = {<Landing />}/>
         <Route path='/login' element={<Login setUser={setUser}/>} />
-        <Route path='/Signup' element={<Signup setUser={user}/>} />
+        <Route path='/Signup' element={<Signup setUser={setUser}/>} />
         <Route path='/editor' element={<Drawer />} />
         <Route path='/about' element={<About />} />
         <Route path="/home" element={<HomePage />} />
