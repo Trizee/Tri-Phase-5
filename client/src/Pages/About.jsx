@@ -27,7 +27,7 @@ function About(){
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-16">
             <h1 className="h1 mb-4 text-gray-300" data-aos="fade-up">Code Together</h1>
-            <p className="text-xl text-white mb-8" data-aos="fade-up" data-aos-delay="200">This is my phase 5 project for Flatirons coding bootcamp, Thank you for visting and feel free to contact me!</p>
+            <p className="text-xl text-white mb-8" data-aos="fade-up" data-aos-delay="200">This is my phase 5 project for Flatirons coding bootcamp, Thank you for visting and feel free to contact me at trihoang09@gmail.com !</p>
             <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center">
               <div data-aos="fade-up" data-aos-delay="400">
                 <a className="btn text-white bg-purple-600 hover:bg-purple-700 w-full mb-4 sm:w-auto sm:mb-0" onClick={()=>navigate('/editor')}>Try it out</a>

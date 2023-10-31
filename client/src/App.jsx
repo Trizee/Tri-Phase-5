@@ -14,6 +14,8 @@ import Login from "./LoginSignup/Login";
 import Signup from "./LoginSignup/Signup";
 import Drawer from "./Editor/DrawerContainer";
 import About from "./Pages/About";
+import PageNotFound from "./Pages/404";
+import HomePage from "./Homepage/HomepageContainer";
 
 function App() {
 
@@ -37,6 +39,8 @@ function App() {
         <Route path='/Signup' element={<Signup setUser={user}/>} />
         <Route path='/editor' element={<Drawer />} />
         <Route path='/about' element={<About />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="*" element={<PageNotFound />} />
       </Route>
     )
   )

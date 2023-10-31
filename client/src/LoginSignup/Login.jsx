@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { useState } from "react";
+import toast, { Toaster } from 'react-hot-toast';
 
 function Login({setUser}){
 
@@ -7,6 +8,12 @@ function Login({setUser}){
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    function toastError(){
+      return toast.error('Check Your Credentials')
+    }
+
+    toastError()
 
     function handleSubmit(e){
       e.preventDefault()
