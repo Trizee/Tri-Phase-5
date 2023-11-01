@@ -59,7 +59,9 @@ function Signup({setUser}){
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6" action="#" method="POST" onSubmit={handleSubmit}>
+          <div className='m-16'>
           <UploadWidget setPic={setPic} pic={pic}/>
+          </div>
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-white">
                 Email

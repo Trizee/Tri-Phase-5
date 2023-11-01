@@ -43,7 +43,7 @@ function UploadWidget({setPic,pic}){
     return (
         <>
         <div className="avatar w-full justify-center" onClick={()=>widgetRef.current.open()}>
-            <div className="w-24 rounded-full ring ring-gray-700 ring-offset-base-100 ring-offset-1 hover:ring-gray-500">
+            <div className="w-full rounded-full ring ring-gray-700 ring-offset-base-100 ring-offset-1 hover:ring-gray-500">
                 <img src={pic} />
             </div>
         </div>
