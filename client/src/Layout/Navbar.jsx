@@ -50,7 +50,7 @@ function Navbar({setUser,user}){
                 {user ?
                 <>
                 <li>
-                <a className="justify-between">
+                <a className="justify-between" onClick={()=>{navigate('/profile')}}>
                     Profile
                     <span className="badge">New</span>
                 </a>

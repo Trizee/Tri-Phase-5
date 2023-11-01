@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom"
 import { useState } from "react";
-import toast, { Toaster } from 'react-hot-toast';
 
 function Login({setUser}){
 
@@ -8,12 +7,6 @@ function Login({setUser}){
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
-    function toastError(){
-      return toast.error('Check Your Credentials')
-    }
-
-    toastError()
 
     function handleSubmit(e){
       e.preventDefault()
@@ -43,7 +36,7 @@ function Login({setUser}){
     }
 
     return(
-        <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-16 lg:px-8 bg-purple-700 -mt-16">
+        <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-16 lg:px-8 bg-purple-800 -mt-16">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-20 w-20 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7,22.45a3.88,3.88,0,1,1,3.87-3.87A3.88,3.88,0,0,1,7,22.45ZM7,16.2a2.38,2.38,0,1,0,2.37,2.38A2.39,2.39,0,0,0,7,16.2Z"/>
             <path d="M7,9.3a3.88,3.88,0,1,1,3.87-3.88A3.88,3.88,0,0,1,7,9.3ZM7,3.05A2.38,2.38,0,1,0,9.38,5.42,2.38,2.38,0,0,0,7,3.05Z"/>

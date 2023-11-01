@@ -16,7 +16,7 @@ function Drawer(){
             <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
             <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
             <h1 className="text-center text-2xl p-8 text-gray-200"><strong>CODEHESIVE</strong></h1>
-            <div className="avatar w-full justify-center" onClick={()=>widgetRef.current.open()}>
+            <div className="avatar w-full justify-center" onClick={()=>{}}>
                 <div className="w-40 rounded-full ring ring-gray-700 ring-offset-base-100 ring-offset-1 hover:ring-gray-500">
                     <img src={pic} />
                 </div>

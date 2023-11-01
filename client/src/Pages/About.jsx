@@ -6,7 +6,7 @@ function About(){
 
     return(
         
-      <div className="h-screen bg-purple-700 m-0 p-0">
+      <div className="h-screen bg-purple-800 m-0 p-0">
 
         {/* Illustration behind hero content */}
         <div className="absolute left-0 bottom-0 -ml-20 hidden lg:block pointer-events-none" aria-hidden="true" data-aos="fade-up" data-aos-delay="400">
