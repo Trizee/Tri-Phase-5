@@ -8,8 +8,8 @@ function ProfilePage({user,setUser}){
     const navigate = useNavigate()
 
     const [pic,setPic] = useState(user.pic)
-    const [bio,setBio] = useState('')
-    const [editMode,setEditMode] = useState(true)
+    const [bio,setBio] = useState(user.description)
+    const [editMode,setEditMode] = useState(false)
 
     console.log(bio)
 
@@ -25,7 +25,7 @@ function ProfilePage({user,setUser}){
           navigate(0)
     }
     
-    function patchBio(){
+    function patch(){
         fetch(`/api/users/${user.id}`,{
           
           Accept: "application/json",
@@ -51,9 +51,10 @@ function ProfilePage({user,setUser}){
       <div className="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-32 gap-y-16 px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
       <div className="grid m-16 p-4">
             <UploadWidget setPic={setPic} pic={pic}></UploadWidget>
+            
         </div>
         <div>
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Your Profile</h2>
+          <h2 className="text-3xl font-bold tracking-tight text-center text-white sm:text-4xl">PROFILE</h2>
   
           <dl className="mt-16 m-2 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
             <div className="border-t border-gray-200 pt-4">
@@ -63,7 +64,7 @@ function ProfilePage({user,setUser}){
               <div className="border-t border-gray-200 pt-4 ">
                 <dt className="font-medium text-white flex">BIO{editMode?null:<EditBtn set={setEditMode}/>}</dt>
                 <dd className="mt-2 font-semibold text-gray-200">{editMode?<textarea class="textarea-xs w-full" onChange={(e)=>{setBio(e.target.value)}} placeholder={bio}></textarea>: `${user.description}`}</dd>
-                {editMode?<dd className="mt-2 font-semibold text-gray-200 hover:text-white flex"><p onClick={()=>{setEditMode(false)}}>Cancel</p><p className="ml-auto" onClick={()=>patchBio()}>Edit</p></dd>:null}
+                {editMode?<dd className="mt-2 font-semibold text-gray-200 hover:text-white flex"><p onClick={()=>{setEditMode(false)}}>Cancel</p></dd>:null}
               </div>
               <div className="border-t border-gray-200 pt-4 ">
                 <dt className="font-medium text-white flex">EMAIL</dt>
@@ -78,8 +79,8 @@ function ProfilePage({user,setUser}){
                 <dd className="mt-2 font-semibold text-gray-200">{user.followed_by.length} Following</dd>
               </div>
               <div className="border-t border-gray-200 pt-4">
-                <dt className="font-medium text-white">DISABLE ACCOUNT</dt>
-                <dd className="mt-2 font-semibold text-gray-500 hover:text-white">Delete Permanently</dd>
+                <dt className="font-medium text-white">OPTIONS</dt>
+                <dd className="mt-2 font-semibold flex"><p className=" text-gray-400 hover:text-white flex">DELELTE</p><p className="ml-auto text-gray-400 hover:text-white flex" onClick={()=>{patch()}} >SAVE</p></dd>
               </div>
           </dl>
         </div>
