@@ -47,6 +47,21 @@ function ProfilePage({user,setUser}){
 
     return(
     <>
+
+    <dialog id="my_modal_1" className="modal">
+    <div className="modal-box">
+        <h3 className="font-bold text-lg text-gray-200 text-center">Confirm</h3>
+        <p className="py-4 text-gray-300">Please confirm account deletion, changes will be permanent all repositories will be deleted</p>
+        <div className="modal-action">
+        <button className="btn mr-auto" onClick={()=>deleteUser()}>Comfirm</button>
+        <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button className="btn">Cancel</button>
+        </form>
+        </div>
+    </div>
+    </dialog>
+
     <div className="bg-gray-800">
       <div className="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-32 gap-y-16 px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
       <div className="grid m-16 p-4">
@@ -80,7 +95,7 @@ function ProfilePage({user,setUser}){
               </div>
               <div className="border-t border-gray-200 pt-4">
                 <dt className="font-medium text-white">OPTIONS</dt>
-                <dd className="mt-2 font-semibold flex"><p className=" text-gray-400 hover:text-white flex">DELELTE</p><p className="ml-auto text-gray-400 hover:text-white flex" onClick={()=>{patch()}} >SAVE</p></dd>
+                <dd className="mt-2 font-semibold flex"><p className=" text-gray-400 hover:text-white flex" onClick={()=>document.getElementById('my_modal_1').showModal()}>DELELTE</p><p className="ml-auto text-gray-400 hover:text-white flex" onClick={()=>{patch()}} >SAVE</p></dd>
               </div>
           </dl>
         </div>
