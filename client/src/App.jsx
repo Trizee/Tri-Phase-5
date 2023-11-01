@@ -43,7 +43,7 @@ function App() {
         <Route path='/editor' element={<Drawer />} />
         <Route path='/about' element={<About />} />
         <Route path="/home" element={<HomePage />} />
-        <Route path="/profile" element={<ProfilePage user={user}/>} />
+        <Route path="/profile" element={<ProfilePage user={user} setUser={setUser}/>} />
         <Route path="*" element={<PageNotFound />} />
       </Route>
     )

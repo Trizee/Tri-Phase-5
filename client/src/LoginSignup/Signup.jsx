@@ -25,6 +25,7 @@ function Signup({setUser}){
           body: JSON.stringify({
               email,
               username,
+              description: 'None',
               password,
               pic,
           })

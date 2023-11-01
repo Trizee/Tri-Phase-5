@@ -30,6 +30,7 @@ if __name__ == '__main__':
             u = User(
                 username = fake.name(),
                 pic = fake.url(),
+                description = 'N/A',
                 email = fake.url(),
                 password_hash = "123abc"
             )

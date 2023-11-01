@@ -1,8 +1,8 @@
 
 
-function EditBtn({}){
+function EditBtn({set}){
     return(
-    <svg className="h-4 w-4 m-1 ml-auto stroke-gray-300 stroke-2 cursor-pointer hover:stroke-gray-200" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <svg onClick={()=>{set(true)}} className="h-4 w-4 m-1 ml-auto stroke-gray-300 stroke-2 cursor-pointer hover:stroke-gray-200" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     
     <defs>
 

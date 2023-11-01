@@ -95,12 +95,11 @@ class UserByID(Resource):
         user = User.query.filter_by(id = id).first()
         if user:
             data = request.get_json()
-            user.username = data['username']
-            user.password = data['password']
+            user.description = data['description']
             user.pic = data['pic']
             db.session.add(user)
             db.session.commit()
-            return user.to_dict(), 200
+            return user.to_dict(), 202
         return {'message': 'User not found'}, 404
     
     def delete(self,id):
