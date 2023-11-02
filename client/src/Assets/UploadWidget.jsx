@@ -13,23 +13,20 @@ function UploadWidget({setPic,pic}){
             remove_header: true,
             styles:{
             palette: {
-                window: "#90A0B3",
-                windowBorder: "#90A0B3",
-                tabIcon: "#0E2F5A",
-                menuIcons: "#5A616A",
+                window: "gray",
+                windowBorder: "black",
+                tabIcon: "black",
+                menuIcons: "black",
                 textDark: "#000000",
-                textLight: "#FFFFFF",
-                link:  "#0078FF",
-                action:  "#FF620C",
-                inactiveTabIcon: "#0E2F5A",
+                textLight: "gray",
+                link:  "gray",
+                action:  "black",
+                inactiveTabIcon: "purple",
                 error: "#F44235",
                 inProgress: "#0078FF",
                 complete: "#20B832",
                 sourceBg: "#E4EBF1",
-            },
-            fonts: {
-                "'Cute Font', cursive": "https://fonts.googleapis.com/css?family=Cute+Font",
-            }},
+            },},
         }, function (error,result) {
             if (result.event == "success") {
                 setPic(result.info.url)

@@ -45,6 +45,11 @@ function ProfilePage({user,setUser}){
           setEditMode(false)
         }
 
+    function cancelEdit(){
+        setBio(user.description)
+        setEditMode(false)
+    }
+
     return(
     <>
 
@@ -62,7 +67,7 @@ function ProfilePage({user,setUser}){
     </div>
     </dialog>
 
-    <div className="bg-gray-800">
+    <div className="bg-gray-800 h-screen">
       <div className="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-32 gap-y-16 px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
       <div className="grid m-16 p-4">
             <UploadWidget setPic={setPic} pic={pic}></UploadWidget>
@@ -79,7 +84,7 @@ function ProfilePage({user,setUser}){
               <div className="border-t border-gray-200 pt-4 ">
                 <dt className="font-medium text-white flex">BIO{editMode?null:<EditBtn set={setEditMode}/>}</dt>
                 <dd className="mt-2 font-semibold text-gray-200">{editMode?<textarea class="textarea-xs w-full" onChange={(e)=>{setBio(e.target.value)}} placeholder={bio}></textarea>: `${user.description}`}</dd>
-                {editMode?<dd className="mt-2 font-semibold text-gray-200 hover:text-white flex"><p onClick={()=>{setEditMode(false)}}>Cancel</p></dd>:null}
+                {editMode?<dd className="mt-2 font-semibold text-gray-200 hover:text-white flex"><p onClick={()=>{cancelEdit(false)}}>Cancel</p></dd>:null}
               </div>
               <div className="border-t border-gray-200 pt-4 ">
                 <dt className="font-medium text-white flex">EMAIL</dt>
