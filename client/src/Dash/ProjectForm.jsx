@@ -1,7 +1,7 @@
 import { useState } from "react"
 import UploadWidget from "../Assets/UploadWidget"
 
-function ProjectForm(){
+function ProjectForm({projects,setProjects}){
 
     const [pic,setPic] = useState('https://www.atlassian.com/blog/wp-content/uploads/2022/01/d02ed553-f52c-43ec-b86e-c7dfec487ef9.png')
     const [title,setTitle] = useState('')
@@ -27,6 +27,7 @@ function ProjectForm(){
           return response.json();
       })
       .then(data => {
+      setProjects([...projects,data])
       setTitle('')
       setDes('')
       setPic('https://www.atlassian.com/blog/wp-content/uploads/2022/01/d02ed553-f52c-43ec-b86e-c7dfec487ef9.png')
