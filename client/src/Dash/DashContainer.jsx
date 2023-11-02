@@ -7,7 +7,7 @@ function DashContainer({user}){
     const [projects,setProjects] = useState(user.code)
 
     return(
-        <div className="h-full bg-purple-800 p-2">
+        <div className="h-full bg-purple-800 p-1">
           <div className="mx-auto mt-2 max-w-7xl px-4 py-6 sm:px-6 lg:px-8 rounded-lg bg-base-100 shadow-xl">
             <h1 className="text-3xl font-bold tracking-tight text-gray-300">Dashboard</h1>
           </div>
