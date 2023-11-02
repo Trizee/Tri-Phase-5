@@ -53,7 +53,7 @@ function Navbar({setUser,user}){
                     Profile
                 </a>
                 </li>
-                <li><a>Projects</a></li>
+                <li><a onClick={()=>navigate('/dash')}>Dashboard</a></li>
                 <li><a onClick={logoutScreen}>Logout</a></li>
                 </>:
                 <>

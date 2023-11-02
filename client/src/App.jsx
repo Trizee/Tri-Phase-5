@@ -17,6 +17,7 @@ import About from "./Pages/About";
 import PageNotFound from "./Pages/404";
 import HomePage from "./Homepage/HomepageContainer";
 import ProfilePage from "./Pages/Profile";
+import DashContainer from "./Dash/DashContainer";
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
         <Route path='/login' element={<Login setUser={setUser}/>} />
         <Route path='/Signup' element={<Signup setUser={setUser}/>} />
         <Route path='/editor' element={<Drawer />} />
+        <Route path='/dash' element={<DashContainer />} />
         <Route path='/about' element={<About />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/profile" element={<ProfilePage user={user} setUser={setUser}/>} />
