@@ -1,8 +1,11 @@
-
+import { useState } from "react"
+import UploadWidget from "../Assets/UploadWidget"
 
 function ProjectForm(){
-    return(
 
+    const [pic,setPic] = useState('https://www.atlassian.com/blog/wp-content/uploads/2022/01/d02ed553-f52c-43ec-b86e-c7dfec487ef9.png')
+
+    return(
     <div className=" bg-base-100 rounded-md shadow-lg p-4 w-full md:p-16 mt-2">
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-100 sm:text-4xl">Create A New Project</h2>
@@ -12,8 +15,9 @@ function ProjectForm(){
         </div>
         <form action="#" method="POST" className="mx-auto mt-16 max-w-xl sm:mt-20">
           <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-            
-            
+          <div className="sm:col-span-2">
+            <UploadWidget pic={pic} setPic={setPic}/>
+          </div>
             <div className="sm:col-span-2">
               <label htmlFor="company" className="block text-sm font-semibold leading-6 text-gray-200">
                 Project Name
@@ -46,7 +50,7 @@ function ProjectForm(){
           <div className="mt-10">
             <button
               type="submit"
-              className="block w-full rounded-md bg-purple-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
+              className="block w-full rounded-md bg-purple-800 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-purple-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
             >
               POST
             </button>

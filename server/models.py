@@ -36,7 +36,7 @@ class User(db.Model, SerializerMixin):
 class Follows(db.Model, SerializerMixin):
     __tablename__ = 'follow_table'
 
-    serialize_rules = ('-follower.follows', '-following.followed_by')
+    serialize_rules = ('-follower.follows', '-following.followed_by','-follower.followed_by','-following.follows')
 
     id = db.Column(db.Integer, primary_key=True)
     following_user = db.Column(db.Integer, db.ForeignKey('user_table.id'))
@@ -55,6 +55,7 @@ class Codes(db.Model, SerializerMixin):
     user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
     title = db.Column(db.String, nullable=False)
     description = db.Column(db.String)
+    pic = db.Column(db.String)
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, onupdate=func.now())
 
