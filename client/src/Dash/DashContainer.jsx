@@ -1,7 +1,10 @@
 import ProjectForm from "./ProjectForm"
 import ProjectCard from "./ProjectCard"
 
-function DashContainer(){
+function DashContainer({user}){
+
+    console.log(user)
+
     return(
         <div className="h-full bg-purple-800 p-2">
           <div className="mx-auto mt-2 max-w-7xl px-4 py-6 sm:px-6 lg:px-8 rounded-lg bg-base-100 shadow-xl">

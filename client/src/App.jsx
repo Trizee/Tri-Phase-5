@@ -42,7 +42,7 @@ function App() {
         <Route path='/login' element={<Login setUser={setUser}/>} />
         <Route path='/Signup' element={<Signup setUser={setUser}/>} />
         <Route path='/editor' element={<Drawer />} />
-        <Route path='/dash' element={<DashContainer />} />
+        <Route path='/dash' element={<DashContainer user={user}/>} />
         <Route path='/about' element={<About />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/profile" element={<ProfilePage user={user} setUser={setUser}/>} />

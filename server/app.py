@@ -125,6 +125,7 @@ class Code(Resource):
         try:
             new_code = Codes(
                 title = data['title'],
+                pic = data['pic'],
                 description = data['description'],
                 user_id = session['user_id'])
         except ValueError as e:

@@ -32,9 +32,6 @@ function UploadWidget({setPic,pic}){
             if (result.event == "success") {
                 setPic(result.info.url)
             }
-            else {
-                console.log(result)
-            }
         })
     }, [])
 
