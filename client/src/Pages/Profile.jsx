@@ -67,16 +67,16 @@ function ProfilePage({user,setUser}){
     </div>
     </dialog>
 
-    <div className="bg-gray-800 h-fit">
+    <div className="bg-gray-800 h-fit p-0 md:p-16">
       <div className="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-32 gap-y-16 px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
-      <div className="grid m-16 p-4">
+      <div className="grid m-0 md:m-8">
             <UploadWidget setPic={setPic} pic={pic}></UploadWidget>
             
         </div>
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-center text-white sm:text-4xl">PROFILE</h2>
   
-          <dl className="mt-16 m-2 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
+          <dl className="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
             <div className="border-t border-gray-200 pt-4">
                 <dt className="font-medium text-white flex">USERNAME</dt>
                 <dd className="mt-2 font-semibold text-gray-200">{user.username}</dd>
