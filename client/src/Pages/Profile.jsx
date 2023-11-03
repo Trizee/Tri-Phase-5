@@ -11,8 +11,6 @@ function ProfilePage({user,setUser}){
     const [bio,setBio] = useState(user.description)
     const [editMode,setEditMode] = useState(false)
 
-    console.log(bio)
-
     function deleteUser(){
         fetch(`/api/users/${user.id}`,{
             method: 'DELETE',

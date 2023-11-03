@@ -1,10 +1,25 @@
 import ProjectForm from "./ProjectForm"
 import ProjectCard from "./ProjectCard"
-import { useState } from "react"
+import { useState,useEffect } from "react"
 
 function DashContainer({user}){
 
-    const [projects,setProjects] = useState(user.code)
+    const [projects,setProjects] = useState([])
+
+    useEffect(()=>{
+      setProjects(user.code)
+    },[])
+
+    function deleteProject(id){
+      fetch(`/api/code/${id}`,{
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+        })
+        .then(r => r.json())
+        .then(data => data)
+        const filtered = projects.filter(project => project.id !== id)
+        setProjects(filtered)
+    }
 
     return(
         <div className="h-full bg-purple-800 p-1">
@@ -17,7 +32,7 @@ function DashContainer({user}){
             <h1 className="text-2xl font-bold tracking-tight text-gray-300 pb-4">Your Projects</h1>
             <div className="flex justify-left mx-0 md:mx-12 h-42 overflow-auto">
             {projects.map((project)=>(
-              <ProjectCard key={project.id} project={project}/>
+              <ProjectCard key={project.id} project={project} deleteProject={deleteProject}/>
             ))}
             </div>
         </div>

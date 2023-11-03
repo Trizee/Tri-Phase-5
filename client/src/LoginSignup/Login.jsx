@@ -28,7 +28,7 @@ function Login({setUser}){
       })
       .then(data => {
           setUser(data)
-          navigate('/')
+          navigate('/dash')
       })
       .catch(error => {
           console.log("error", error.message);

@@ -38,7 +38,7 @@ function Signup({setUser}){
       })
       .then(data => {
         setUser(data)
-        navigate('/editor')
+        navigate('/dash')
       })
       .catch(error => {
           console.log("error", error.message);
