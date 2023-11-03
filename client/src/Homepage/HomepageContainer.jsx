@@ -1,11 +1,12 @@
 import { useState,useEffect } from "react"
 import ProjectCard from "../Dash/ProjectCard"
 
-function HomePage(){
+function HomePage({p,setP}){
 
     const [projects,setProjects] = useState([])
     const [search,setSearch] = useState('')
 
+    // clothes useState setClothes([..clothes,data])
     // make a fetch for the code and display them in nice ui homescreen
     useEffect(()=>{
         fetch('/api/code')
@@ -16,6 +17,32 @@ function HomePage(){
     const projectDisplay = projects.filter(project => {
       return project.title.toLowerCase().includes(search.toLowerCase())
     })
+
+    function copyProject(pro){
+      fetch("/api/code",{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            title: `${pro.title}-Copy`,
+            description: `${pro.description} - Creator: ${pro.user.username}`,
+            pic: pro.pic
+        })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response error");
+            }
+            return response.json();
+        })
+        .then(data => {
+        setP([...p,data])
+        })
+        .catch(error => {
+            console.log("error", error.message);
+        });
+    }
 
     return(
         <>
@@ -34,9 +61,9 @@ function HomePage(){
 
             <svg xmlns="http://www.w3.org/2000/svg" className="mt-2 h-8 w-8 hover:stroke-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 p-0 md:p-6">
             {projectDisplay.map((project)=>(
-              <ProjectCard key={project.id} project={project} deleteProject={null}/>
+              <ProjectCard key={project.id} project={project} leftFunc={copyProject} />
             ))}
         </div>
         </div>

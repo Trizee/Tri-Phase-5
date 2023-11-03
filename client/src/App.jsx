@@ -22,6 +22,7 @@ import DashContainer from "./Dash/DashContainer";
 function App() {
 
   const [user,setUser] = useState(null)
+  const [projects,setProjects] = useState([])
 
   useEffect(()=>{
     fetch('/api/check_session')
@@ -29,6 +30,7 @@ function App() {
     .then(data => {
       if (data.username){
         setUser(data)
+        setProjects(data.code)
       }}
       )
   },[])
@@ -40,9 +42,9 @@ function App() {
         <Route path='/login' element={<Login setUser={setUser}/>} />
         <Route path='/Signup' element={<Signup setUser={setUser}/>} />
         <Route path='/editor' element={<Drawer />} />
-        <Route path='/dash' element={<DashContainer user={user} setUser={setUser}/>} />
+        <Route path='/dash' element={<DashContainer user={user} projects={projects} setProjects={setProjects}/>} />
         <Route path='/about' element={<About />} />
-        <Route path="/home" element={<HomePage />} />
+        <Route path="/home" element={<HomePage setP={setProjects} p={projects}/>} />
         <Route path="/profile" element={<ProfilePage user={user} setUser={setUser}/>} />
         <Route path="*" element={<PageNotFound />} />
       </Route>
