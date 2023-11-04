@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom"
 import { useState } from "react";
+import { ToastContainer,toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function Login({setUser}){
 
@@ -7,6 +10,19 @@ function Login({setUser}){
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    function notify(){
+      toast.error('Oops, Something Went Wrong', {
+        position: "top-center",
+        autoClose: 3500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+    }
 
     function handleSubmit(e){
       e.preventDefault()
@@ -25,6 +41,7 @@ function Login({setUser}){
               throw new Error("Network response error");
           }
           return response.json();
+
       })
       .then(data => {
           setUser(data)
@@ -32,10 +49,12 @@ function Login({setUser}){
       })
       .catch(error => {
           console.log("error", error.message);
+          notify()
       });
     }
 
     return(
+      
         <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-16 lg:px-8 bg-purple-800 -mt-16">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-20 w-20 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7,22.45a3.88,3.88,0,1,1,3.87-3.87A3.88,3.88,0,0,1,7,22.45ZM7,16.2a2.38,2.38,0,1,0,2.37,2.38A2.39,2.39,0,0,0,7,16.2Z"/>
@@ -107,6 +126,18 @@ function Login({setUser}){
             </a>
           </p>
         </div>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+          />
       </div>
     )
 }
