@@ -2,7 +2,7 @@ import { useState,useEffect } from "react"
 import ProjectCard from "../Dash/ProjectCard"
 import { toast } from "react-toastify";
 
-function HomePage({p,setP,user,set}){
+function HomePage({user,set}){
 
     const [projects,setProjects] = useState([])
     const [search,setSearch] = useState('')
@@ -64,7 +64,6 @@ function HomePage({p,setP,user,set}){
             return response.json();
         })
         .then(data => {
-        setP([...p,data])
         notifyS('Copied To Your Dash')
         })
         .catch(error => {

@@ -1,11 +1,22 @@
 import ProjectForm from "./ProjectForm"
 import ProjectCard from "./ProjectCard"
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function DashContainer({setProjects,projects,user}){
+function DashContainer({user}){
 
     const [search,setSearch] = useState('')
+    const [projects,setProjects] = useState([])
+
+    useEffect(()=>{
+      fetch('/api/check_session')
+      .then(response => response.json())
+      .then(data => {
+        if (data.username){
+          setProjects(data.code)
+        }}
+        )
+    },[])
 
     function notifyE(string){
       toast.error(string, {

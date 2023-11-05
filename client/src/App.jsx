@@ -25,7 +25,7 @@ import FullScreenPreview from "./Homepage/FullScreenPreview";
 function App() {
 
   const [user,setUser] = useState(null)
-  const [projects,setProjects] = useState([])
+  
   const [preview, setPreview] = useState([])
 
   useEffect(()=>{
@@ -34,12 +34,9 @@ function App() {
     .then(data => {
       if (data.username){
         setUser(data)
-        setProjects(data.code)
       }}
       )
   },[])
-
-  console.log(preview)
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -48,9 +45,9 @@ function App() {
         <Route path='/login' element={<Login setUser={setUser}/>} />
         <Route path='/Signup' element={<Signup setUser={setUser}/>} />
         <Route path='/editor' element={<Drawer />} />
-        <Route path='/dash' element={<DashContainer user={user} projects={projects} setProjects={setProjects} />} />
+        <Route path='/dash' element={<DashContainer user={user}/>} />
         <Route path='/about' element={<About />} />
-        <Route path="/home" element={<HomePage setP={setProjects} p={projects} user={user} set={setPreview}/>} />
+        <Route path="/home" element={<HomePage user={user} set={setPreview}/>} />
         <Route path="/profile" element={<ProfilePage user={user} setUser={setUser}/>} />
         <Route path="/preview" element={<FullScreenPreview preview={preview}/>} />
         <Route path="*" element={<PageNotFound />} />
