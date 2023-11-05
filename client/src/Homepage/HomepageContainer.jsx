@@ -1,7 +1,8 @@
 import { useState,useEffect } from "react"
 import ProjectCard from "../Dash/ProjectCard"
+import { toast } from "react-toastify";
 
-function HomePage({p,setP,user}){
+function HomePage({p,setP,user,set}){
 
     const [projects,setProjects] = useState([])
     const [search,setSearch] = useState('')
@@ -17,6 +18,32 @@ function HomePage({p,setP,user}){
     const projectDisplay = projects.filter(project => {
       return project.title.toLowerCase().includes(search.toLowerCase())
     })
+
+    function notifyE(string){
+      toast.error(string, {
+        position: "top-center",
+        autoClose: 3500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+    }
+  
+    function notifyS(string){
+      toast.success(string, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+    }
 
     function copyProject(pro){
       fetch("/api/code",{
@@ -38,9 +65,11 @@ function HomePage({p,setP,user}){
         })
         .then(data => {
         setP([...p,data])
+        notifyS('Copied To Your Dash')
         })
         .catch(error => {
             console.log("error", error.message);
+            notifyE('Opps Something went wrong')
         });
     }
 
@@ -61,9 +90,9 @@ function HomePage({p,setP,user}){
 
             <svg xmlns="http://www.w3.org/2000/svg" className="mt-2 h-8 w-8 hover:stroke-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 p-0 md:p-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 p-0 md:p-6 h">
             {projectDisplay.map((project)=>(
-              <ProjectCard key={project.id} project={project} leftFunc={copyProject} user={user} />
+              <ProjectCard key={project.id} project={project} leftFunc={copyProject} user={user} set={set} />
             ))}
         </div>
         </div>

@@ -18,6 +18,7 @@ import PageNotFound from "./Pages/404";
 import HomePage from "./Homepage/HomepageContainer";
 import ProfilePage from "./Pages/Profile";
 import DashContainer from "./Dash/DashContainer";
+import FullScreenPreview from "./Homepage/FullScreenPreview";
 
 
 
@@ -25,6 +26,7 @@ function App() {
 
   const [user,setUser] = useState(null)
   const [projects,setProjects] = useState([])
+  const [preview, setPreview] = useState([])
 
   useEffect(()=>{
     fetch('/api/check_session')
@@ -37,6 +39,8 @@ function App() {
       )
   },[])
 
+  console.log(preview)
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout setUser={setUser} user={user} />}>
@@ -46,8 +50,9 @@ function App() {
         <Route path='/editor' element={<Drawer />} />
         <Route path='/dash' element={<DashContainer user={user} projects={projects} setProjects={setProjects} />} />
         <Route path='/about' element={<About />} />
-        <Route path="/home" element={<HomePage setP={setProjects} p={projects} user={user}/>} />
+        <Route path="/home" element={<HomePage setP={setProjects} p={projects} user={user} set={setPreview}/>} />
         <Route path="/profile" element={<ProfilePage user={user} setUser={setUser}/>} />
+        <Route path="/preview" element={<FullScreenPreview preview={preview}/>} />
         <Route path="*" element={<PageNotFound />} />
       </Route>
     )

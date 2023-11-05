@@ -1,9 +1,10 @@
 import ProjectMockup from "./ProjectMockup"
-import { useLocation } from "react-router-dom"
+import { useLocation,useNavigate } from "react-router-dom"
 
-function ProjectCard({project, leftFunc, user}){
+function ProjectCard({project, leftFunc, user,set }){
 
     const location = useLocation()
+    const navigate = useNavigate()
     
     function LeftButtonControl(){
         if (location.pathname === '/dash'){
@@ -15,6 +16,12 @@ function ProjectCard({project, leftFunc, user}){
         }
     }
 
+    function preview(){
+        set(project)
+        navigate('/preview')
+    }
+
+
     return(
         <>
 
@@ -24,7 +31,7 @@ function ProjectCard({project, leftFunc, user}){
             <ProjectMockup project={project}/>
             <div className="flex m-2 ">
             {LeftButtonControl()}
-            {location.pathname === '/dash' ? <p className="ml-auto hover:text-white hover:cursor-pointer p-2">LAUNCH ROOM</p> : <p className="ml-auto hover:text-white hover:cursor-pointer p-2">VIEW</p>}
+            {location.pathname === '/dash' ? <p className="ml-auto hover:text-white hover:cursor-pointer p-2">LAUNCH ROOM</p> : <p onClick={()=>preview()} className="ml-auto hover:text-white hover:cursor-pointer p-2">VIEW</p>}
             </div>
         </div>
         <form method="dialog" className="modal-backdrop">

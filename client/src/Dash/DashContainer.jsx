@@ -59,7 +59,7 @@ function DashContainer({setProjects,projects,user}){
             <h1 className="text-2xl font-bold tracking-tight text-gray-300 pb-4">Your Projects</h1>
             <div className="flex justify-left mx-0 md:mx-12 h-42 overflow-auto">
             {projects.map((project)=>(
-              <ProjectCard key={project.id} project={project} leftFunc={deleteProject} user={user}/>
+              <ProjectCard key={project.id} project={project} leftFunc={deleteProject} user={user} set={null}/>
             ))}
             </div>
         </div>
