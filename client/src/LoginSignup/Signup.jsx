@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import UploadWidget from '../Assets/UploadWidget';
+import { toast } from "react-toastify";
 
 function Signup({setUser}){
 
@@ -12,10 +13,36 @@ function Signup({setUser}){
     const [confirmPassword,setConfirmPassword] = useState('')
     const [pic,setPic] = useState('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/1024px-Windows_10_Default_Profile_Picture.svg.png')
 
+    function notifyE(string){
+      toast.error(string, {
+        position: "top-center",
+        autoClose: 3500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+    }
+  
+    function notifyS(string){
+      toast.success(string, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+    }
+
     function handleSubmit(e){
       e.preventDefault()
       if(password !== confirmPassword){
-        alert('Password Does Not Match')
+        notifyE('Passwords Do Not Match')
       } else{
       fetch("/api/users",{
           method: 'POST',
@@ -39,9 +66,11 @@ function Signup({setUser}){
       .then(data => {
         setUser(data)
         navigate('/dash')
+        notifyS('Welcome To The Club')
       })
       .catch(error => {
           console.log("error", error.message);
+          notifyE('Opps Somthing Went Wrong')
       });
       }  
     }

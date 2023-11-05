@@ -1,7 +1,7 @@
 import { useState,useEffect } from "react"
 import ProjectCard from "../Dash/ProjectCard"
 
-function HomePage({p,setP}){
+function HomePage({p,setP,user}){
 
     const [projects,setProjects] = useState([])
     const [search,setSearch] = useState('')
@@ -63,7 +63,7 @@ function HomePage({p,setP}){
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 p-0 md:p-6">
             {projectDisplay.map((project)=>(
-              <ProjectCard key={project.id} project={project} leftFunc={copyProject} />
+              <ProjectCard key={project.id} project={project} leftFunc={copyProject} user={user} />
             ))}
         </div>
         </div>

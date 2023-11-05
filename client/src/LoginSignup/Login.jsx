@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { useState } from "react";
-import { ToastContainer,toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-
+import { toast } from "react-toastify";
 
 function Login({setUser}){
 
@@ -11,10 +9,23 @@ function Login({setUser}){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    function notify(){
-      toast.error('Oops, Something Went Wrong', {
+    function notifyE(string){
+      toast.error(string, {
         position: "top-center",
         autoClose: 3500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+    }
+  
+    function notifyS(string){
+      toast.success(string, {
+        position: "top-center",
+        autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -46,10 +57,11 @@ function Login({setUser}){
       .then(data => {
           setUser(data)
           navigate('/dash')
+          notifyS('Logged In')
       })
       .catch(error => {
           console.log("error", error.message);
-          notify()
+          notifyE('Opps Something Went Wrong')
       });
     }
 
@@ -126,18 +138,6 @@ function Login({setUser}){
             </a>
           </p>
         </div>
-        <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-          />
       </div>
     )
 }

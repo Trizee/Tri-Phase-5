@@ -19,6 +19,8 @@ import HomePage from "./Homepage/HomepageContainer";
 import ProfilePage from "./Pages/Profile";
 import DashContainer from "./Dash/DashContainer";
 
+
+
 function App() {
 
   const [user,setUser] = useState(null)
@@ -42,9 +44,9 @@ function App() {
         <Route path='/login' element={<Login setUser={setUser}/>} />
         <Route path='/Signup' element={<Signup setUser={setUser}/>} />
         <Route path='/editor' element={<Drawer />} />
-        <Route path='/dash' element={<DashContainer user={user} projects={projects} setProjects={setProjects}/>} />
+        <Route path='/dash' element={<DashContainer user={user} projects={projects} setProjects={setProjects} />} />
         <Route path='/about' element={<About />} />
-        <Route path="/home" element={<HomePage setP={setProjects} p={projects}/>} />
+        <Route path="/home" element={<HomePage setP={setProjects} p={projects} user={user}/>} />
         <Route path="/profile" element={<ProfilePage user={user} setUser={setUser}/>} />
         <Route path="*" element={<PageNotFound />} />
       </Route>

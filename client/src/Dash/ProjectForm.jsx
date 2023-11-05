@@ -1,11 +1,39 @@
 import { useState } from "react"
 import UploadWidget from "../Assets/UploadWidget"
+import { toast } from "react-toastify";
+
 
 function ProjectForm({projects,setProjects}){
 
     const [pic,setPic] = useState('https://www.atlassian.com/blog/wp-content/uploads/2022/01/d02ed553-f52c-43ec-b86e-c7dfec487ef9.png')
     const [title,setTitle] = useState('')
     const [des,setDes] = useState('')
+
+    function notifyE(string){
+      toast.error(string, {
+        position: "top-center",
+        autoClose: 3500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+    }
+  
+    function notifyS(string){
+      toast.success(string, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+    }
 
     function handleSubmit(e){
       e.preventDefault()
@@ -27,6 +55,7 @@ function ProjectForm({projects,setProjects}){
           return response.json();
       })
       .then(data => {
+      notifyS('Project Successfully Posted')
       setProjects([...projects,data])
       setTitle('')
       setDes('')
@@ -34,6 +63,7 @@ function ProjectForm({projects,setProjects}){
       })
       .catch(error => {
           console.log("error", error.message);
+          notifyE('Opps Something Went Wrong')
       });
       
       }  
