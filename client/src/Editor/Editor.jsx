@@ -4,11 +4,11 @@ import EditorModuleCSS from "./EditModuleCSS";
 import EditorModuleJS from "./EditModuleJS";
 import Expand from "./Expand";
 
-function EditorComponent({room}){
+function EditorComponent({room,version}){
 
-  const [html,setHtml] = useState('')
-  const [css,setCss] = useState('')
-  const [js,setJs] = useState('')
+  const [html,setHtml] = useState(version.html)
+  const [css,setCss] = useState(version.css)
+  const [js,setJs] = useState(version.js)
   const [srcDoc,setSrcDoc] = useState('')
   
   // Making useStates for switcher function

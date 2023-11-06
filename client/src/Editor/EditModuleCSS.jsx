@@ -21,10 +21,12 @@ function EditorModuleCSS({value,set,active,room}){
         
       }
 
+      console.log(value)
+
     return (
       <Editor 
       height={active === 'css'?'95vh':'0'}
-      value={value}
+      defaultValue={`${value}`}
       theme="vs-dark"
       language='css'
       onMount={handleEditorDidMount}

@@ -24,7 +24,7 @@ function EditorModuleJS({value,set,active,room}){
     return (
       <Editor 
       height={active === 'js'?'95vh':'0'}
-      value={value}
+      value={`${value}`}
       theme="vs-dark"
       language='javascript'
       onMount={handleEditorDidMount}

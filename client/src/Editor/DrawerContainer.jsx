@@ -6,15 +6,14 @@ import { useLoaderData,useNavigate } from "react-router-dom"
 function Drawer(){
 
     let room = useLoaderData()
-    const navigate = useNavigate()
-
-    console.log(room)
+    const navigate = useNavigate()  
+    const [version,setVersion] = useState(room.version[room.version.length - 1])
 
     return(
         <div className="drawer">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
-            <EditorComponent room={room}/>
+            <EditorComponent room={room} version={version}/>
         </div> 
         <div className="drawer-side">
             <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
@@ -38,12 +37,10 @@ function Drawer(){
                 <div>
                 <li className="font-bold pt-4 text-base text-gray-300">
                 <select className="select primary w-auto md:w-36">
-                <option disabled selected>Version</option>
-                <option>Homer</option>
-                <option>Marge</option>
-                <option>Bart</option>
-                <option>Lisa</option>
-                <option>Maggie</option>
+                <option disabled defaultValue={room.version[room.version.length - 1]}>Version</option>
+                {room.version.map((option)=>(
+                    <option key={option.id} value={option} onSelect={(e)=>setVersion(e.target.value)}>{option.id}</option>
+                ))}
                 </select>
                 </li>
                 
