@@ -1,6 +1,7 @@
 import EditorComponent from "./Editor"
 import { useState } from "react"
 import { useLoaderData,useNavigate } from "react-router-dom"
+import { toast } from "react-toastify";
 
 
 function Drawer(){
@@ -13,14 +14,68 @@ function Drawer(){
     const [css,setCss] = useState('')
     const [js,setJs] = useState('')
 
-    console.log(version)
+    function notifyE(string){
+        toast.error(string, {
+          position: "top-center",
+          autoClose: 3500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });
+      }
     
-
+      function notifyS(string){
+        toast.success(string, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });
+      }
+    
     function loadCode(){
         setHtml(version.html)
         setCss(version.css)
         setJs(version.js)
   }
+
+
+    function newVersion(){
+      fetch("/api/version",{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            html: html,
+            css: css,
+            js: js,
+            code_id: room.id
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Network response error");
+        }
+        return response.json();
+    })
+    .then(data => {
+        notifyS('Post Successful')
+    })
+    .catch(error => {
+        console.log("error", error.message);
+        notifyE('Opps Something Went Wrong')
+    });
+    }
+    
+    console.log(version)
 
     return(
         <div className="drawer">
@@ -53,14 +108,14 @@ function Drawer(){
                 <option disabled >Version</option>
                 <option>Create New Version</option>
                 {room.version.map((option)=>(
-                    <option key={option.id} value={option} onSelect={(e)=>setVersion(e.target.value)}>{option.id}</option>
+                    <option key={option.id} value={option} onChange={(e)=>setVersion(e.target.value)}>{option.id}</option>
                 ))}
                 </select>
                 </li>
                 
                 
             </div>
-                <button className="btn bg-gray-800 hover:bg-gray-700 m-1">commit</button>
+                <button className="btn bg-gray-800 hover:bg-gray-700 m-1" onClick={()=>newVersion()}>commit</button>
                 <button className="btn w-auto bg-gray-800 hover:bg-gray-700 m-1" onClick={()=>loadCode()}>Load Code</button>
             </ul>
         </div>

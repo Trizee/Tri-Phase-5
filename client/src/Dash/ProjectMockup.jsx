@@ -2,10 +2,13 @@
 
 function ProjectMockup({project}){
 
-    const srcDoc = `<html>
+    const srcDoc = 
+    `
+    <html>
     <body><h1>Nothing Yet</h1></body>
     <style>body{text-align:center; font-size:12px;}</style>
-    </html>`
+    </html>
+    `
 
     return(
         <>
