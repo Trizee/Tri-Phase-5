@@ -19,6 +19,7 @@ import HomePage from "./Homepage/HomepageContainer";
 import ProfilePage from "./Pages/Profile";
 import DashContainer from "./Dash/DashContainer";
 import FullScreenPreview from "./Homepage/FullScreenPreview";
+import RouteTest from "./Routetest";
 
 
 
@@ -51,6 +52,18 @@ function App() {
         <Route path="/profile" element={<ProfilePage user={user} setUser={setUser}/>} />
         <Route path="/preview" element={<FullScreenPreview preview={preview}/>} />
         <Route path="*" element={<PageNotFound />} />
+        <Route
+         path="/test/:userID" 
+         element = {<RouteTest />}
+         loader={async ({ request,params }) => {
+          return fetch(
+            `/api/users/${params.userID}`,
+            { signal: request.signal }
+          );
+        }}
+        action={async ({ request }) => {
+          return (await request.formData());
+        }} />
       </Route>
     )
   )
