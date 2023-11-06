@@ -4,7 +4,7 @@ import EditorModuleCSS from "./EditModuleCSS";
 import EditorModuleJS from "./EditModuleJS";
 import Expand from "./Expand";
 
-function EditorComponent(){
+function EditorComponent({room}){
 
   const [html,setHtml] = useState('')
   const [css,setCss] = useState('')
@@ -84,9 +84,9 @@ function EditorComponent(){
         <a className={active === 'js'?'tab tab-bordered tab-active mr-4 ml-4':'tab tab-bordered mr-4 ml-4'} onClick={()=>setActive('js')}>JAVASCRIPT</a>
         <Expand set={setEditorExpand} value={editorExpand}/>
     </ul>
-    <EditorModuleHTML value={html} set={setHtml} active={active}/>
-    <EditorModuleCSS value={css} set={setCss} active={active}/>
-    <EditorModuleJS  value={js} set={setJs} active={active}/>
+    <EditorModuleHTML value={html} set={setHtml} active={active} room={room.id}/>
+    <EditorModuleCSS value={css} set={setCss} active={active} room={room.id}/>
+    <EditorModuleJS  value={js} set={setJs} active={active} room={room.id}/>
     </div>
     <div className={windowCss()}>
     <div className="mockup-browser-toolbar" >

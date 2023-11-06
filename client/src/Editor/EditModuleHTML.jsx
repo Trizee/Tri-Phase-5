@@ -4,7 +4,7 @@ import { WebrtcProvider } from "y-webrtc"
 import { MonacoBinding } from "y-monaco"
 import { useRef } from 'react'
 
-function EditorModuleHTML({value,set,active}){
+function EditorModuleHTML({value,set,active,room}){
 
     const editorRef = useRef(null)
 
@@ -14,7 +14,7 @@ function EditorModuleHTML({value,set,active}){
     
         const doc = new Y.Doc()
         
-        const provider = new WebrtcProvider('html',doc)
+        const provider = new WebrtcProvider(`html-${room}`,doc)
         const type = doc.getText('html')
         
         const binding = new MonacoBinding(type, editorRef.current.getModel(), new Set([editorRef.current]), provider.awareness)

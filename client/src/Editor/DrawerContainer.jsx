@@ -1,11 +1,12 @@
 import EditorComponent from "./Editor"
 import { useState } from "react"
-import { useLoaderData } from "react-router-dom"
+import { useLoaderData,useNavigate } from "react-router-dom"
 
 
 function Drawer(){
 
     let room = useLoaderData()
+    const navigate = useNavigate()
 
     console.log(room)
 
@@ -13,14 +14,14 @@ function Drawer(){
         <div className="drawer">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
-            <EditorComponent />
+            <EditorComponent room={room}/>
         </div> 
         <div className="drawer-side">
             <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
             <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
             <h1 className="text-center text-2xl p-8 text-gray-200"><strong>CODEHESIVE</strong></h1>
             <div className="avatar w-full justify-center" onClick={()=>{}}>
-                <div className="w-40 rounded-full ring ring-gray-700 ring-offset-base-100 ring-offset-1 hover:ring-gray-500">
+                <div className="w-40 rounded-full ring ring-gray-700 ring-offset-base-100 ring-offset-1 hover:ring-gray-500" onClick={()=>navigate(`/user/${room.user.id}`)}>
                     <img src={room.user.pic} />
                 </div>
             </div>
@@ -33,13 +34,22 @@ function Drawer(){
                 <p>{room.description}</p>
             </div>
 
-            <div className="mt-auto p-4 pb-12 flex">
+            <div className="mt-auto p-4 pb-10 flex">
                 <div>
-                <li className="font-bold pt-4 text-base text-gray-300">Version</li>
-                <p>V.1.1.1.1.23</p>
+                <li className="font-bold pt-4 text-base text-gray-300">
+                <select className="select primary w-auto md:w-36">
+                <option disabled selected>Version</option>
+                <option>Homer</option>
+                <option>Marge</option>
+                <option>Bart</option>
+                <option>Lisa</option>
+                <option>Maggie</option>
+                </select>
+                </li>
+                
                 </div>
                 <div className="mt-4 ml-auto">
-                <button className="btn bg-gray-800 hover:bg-gray-700">Make a commit</button>
+                <button className="btn bg-gray-800 hover:bg-gray-700">commit</button>
                 </div>
             </div>
 
