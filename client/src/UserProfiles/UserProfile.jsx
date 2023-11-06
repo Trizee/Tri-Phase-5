@@ -25,7 +25,7 @@ function UserProfile({set,session}){
     useEffect(()=>{
         setFollowing(user.follows)
         setFollowers(user.followed_by)
-    },[])
+    },[user])
 
     const projectDisplay = projects.filter(project => {
         return project.title.toLowerCase().includes(search.toLowerCase())

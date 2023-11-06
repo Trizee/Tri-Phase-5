@@ -24,7 +24,6 @@ function DashContainer({user}){
           setProjects(data.code)
           setFollowers(data.followed_by)
           setFollowing(data.follows)
-          console.log(data)
         }}
         )
     },[])

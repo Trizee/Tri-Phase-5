@@ -67,7 +67,7 @@ class Codes(db.Model, SerializerMixin):
 class Rooms(db.Model, SerializerMixin):
     __tablename__ = 'room_table'
 
-    serialize_rules = ('-user.rooms', '-code.rooms')
+    serialize_rules = ('-user.rooms','-user.code','-code.user','-code.rooms')
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
