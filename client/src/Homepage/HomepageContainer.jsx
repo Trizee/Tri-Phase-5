@@ -112,28 +112,7 @@ function HomePage({user,set}){
               <ProjectCard key={project.id} project={project} leftFunc={copyProject} user={user} set={set} />
             ))}
         </div>
-        </div>
-
-              {/* Make this section for following */}
-
-        <div className={user ? "m-auto max-w-7xl mt-2 mb-2 shadow-xl rounded-lg bg-base-100" : 'hidden'}>
-        <div className="mx-auto mt-2 max-w-7xl px-4 py-6 sm:px-6 lg:px-8 rounded-lg shadow-xl flex">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-300">Following</h1>
-            
-            <div className="form-control ml-auto mr-0 md:mr-6">
-              <input type="text" placeholder="Search" onChange={(e)=>setSearch(e.target.value)} className="input input-bordered w-24 md:w-auto focus:bg-gray-900" />
-            </div>
-            {/* <Collapse set={null}/> */}
-            <svg xmlns="http://www.w3.org/2000/svg" className="mt-2 h-8 w-8 hover:stroke-gray-200 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 p-0 md:p-6">
-            {/* {projectDisplay.map((project)=>(
-              <ProjectCard key={project.id} project={project} leftFunc={copyProject} user={user} set={set} />
-            ))} */}
-        </div>
-        </div>
-
-        
+        </div>      
         </div>
         </>
     )

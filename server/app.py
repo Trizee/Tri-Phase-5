@@ -26,6 +26,24 @@ app.secret_key = 'super secret key'
 def index():
     return '<h1>Code Together Backend</h1>'
 
+class Followers(Resource):
+    def post(self):
+        data = request.get_json()
+
+        try:
+            new_follow = Follows(
+             followed_user  = data['following'],
+             following_user = session['user_id']
+                )
+        except ValueError as e:
+            return {"errors": ["validation errors"]}, 400
+        db.session.add(new_follow)
+        db.session.commit()
+
+        return new_follow.to_dict(),201
+
+api.add_resource(Followers,'/follows')
+
 class Login(Resource):
     def post(self):
         data = request.get_json()

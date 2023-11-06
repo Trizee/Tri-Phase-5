@@ -74,12 +74,41 @@ function UserProfile({set,session}){
           });
       }
 
+    function followUser(){
+        fetch("/api/follows",{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                following: user.id
+            })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response error");
+                }
+                return response.json();
+            })
+            .then(data => {
+            notifyS(`You are now Following ${user.username}`)
+            })
+            .catch(error => {
+                console.log("error", error.message);
+                notifyE('Opps Something went wrong')
+            });
+    }
+
+    function followBtnCss(){
+        
+    }
+
     return(
         <>
         <div className="min-h-screen bg-purple-800 p-1">
           <div className="mx-auto mt-2 max-w-7xl px-4 py-6 sm:px-6 lg:px-8 rounded-lg bg-base-100 shadow-xl flex">
             <h1 className="text-3xl font-bold tracking-tight text-gray-300">{user.username}</h1>
-            <p className={user === session ? 'btn ml-auto btn-disabled': "btn ml-auto"}>Follow</p>
+            <p className={user === session ? 'btn ml-auto btn-disabled': "btn ml-auto"} onClick={()=>followUser()}>Follow</p>
           </div>
         <main>
         <div className="mx-auto mt-2 max-w-7xl px-4 py-6 sm:px-6 lg:px-8 rounded-lg shadow-xl flex bg-base-100">
