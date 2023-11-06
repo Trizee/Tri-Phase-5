@@ -9,11 +9,24 @@ function Drawer(){
     const navigate = useNavigate()  
     const [version,setVersion] = useState(room.version[room.version.length - 1])
 
+    const [html,setHtml] = useState('')
+    const [css,setCss] = useState('')
+    const [js,setJs] = useState('')
+
+    console.log(version)
+    
+
+    function loadCode(){
+        setHtml(version.html)
+        setCss(version.css)
+        setJs(version.js)
+  }
+
     return(
         <div className="drawer">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
-            <EditorComponent room={room} version={version}/>
+            <EditorComponent room={room} version={version} html={html} setHtml={setHtml} css={css} setCss={setCss} js={js} setJs={setJs}/>
         </div> 
         <div className="drawer-side">
             <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
@@ -33,23 +46,22 @@ function Drawer(){
                 <p>{room.description}</p>
             </div>
 
-            <div className="mt-auto p-4 pb-10 flex">
-                <div>
-                <li className="font-bold pt-4 text-base text-gray-300">
-                <select className="select primary w-auto md:w-36">
-                <option disabled defaultValue={room.version[room.version.length - 1]}>Version</option>
+            <div className="mt-auto p-1">
+    
+                <li className="font-bold text-base text-gray-300">
+                <select className="select primary w-auto">
+                <option disabled >Version</option>
+                <option>Create New Version</option>
                 {room.version.map((option)=>(
                     <option key={option.id} value={option} onSelect={(e)=>setVersion(e.target.value)}>{option.id}</option>
                 ))}
                 </select>
                 </li>
                 
-                </div>
-                <div className="mt-4 ml-auto">
-                <button className="btn bg-gray-800 hover:bg-gray-700">commit</button>
-                </div>
+                
             </div>
-
+                <button className="btn bg-gray-800 hover:bg-gray-700 m-1">commit</button>
+                <button className="btn w-auto bg-gray-800 hover:bg-gray-700 m-1" onClick={()=>loadCode()}>Load Code</button>
             </ul>
         </div>
         </div>

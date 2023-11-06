@@ -2,11 +2,13 @@ import Editor from '@monaco-editor/react'
 import * as Y from "yjs"
 import { WebrtcProvider } from "y-webrtc"
 import { MonacoBinding } from "y-monaco"
-import { useRef } from 'react'
+import { useRef,useState } from 'react'
 
 function EditorModuleJS({value,set,active,room}){
 
     const editorRef = useRef(null)
+
+    const [editVal,setEditVal] = useState('')
 
     function handleEditorDidMount(editor){
 
@@ -24,7 +26,7 @@ function EditorModuleJS({value,set,active,room}){
     return (
       <Editor 
       height={active === 'js'?'95vh':'0'}
-      value={`${value}`}
+      value={value}
       theme="vs-dark"
       language='javascript'
       onMount={handleEditorDidMount}

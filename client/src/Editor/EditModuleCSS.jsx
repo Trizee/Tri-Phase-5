@@ -21,15 +21,13 @@ function EditorModuleCSS({value,set,active,room}){
         
       }
 
-      console.log(value)
-
     return (
       <Editor 
       height={active === 'css'?'95vh':'0'}
-      defaultValue={`${value}`}
+      onMount={handleEditorDidMount}
+      value={value}
       theme="vs-dark"
       language='css'
-      onMount={handleEditorDidMount}
       onChange={set}
       />
     )
