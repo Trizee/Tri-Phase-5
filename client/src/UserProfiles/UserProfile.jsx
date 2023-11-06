@@ -1,17 +1,31 @@
 import { useLoaderData } from "react-router-dom"
 import Collapse from "../Homepage/ProjectCollapse"
 import ProjectCard from "../Dash/ProjectCard"
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import UserStats from "./UserStats"
 import { toast } from "react-toastify";
+import UserCard from "./UserCards";
 
 function UserProfile({set,session}){
 
     let user = useLoaderData()
 
+    console.log(user)
+
     const [col,setCol] = useState(false)
     const [search,setSearch] = useState('')
+    const [followCol,setFollowCol] = useState(false)
+    const [followerCol,setFollowerCol] = useState(false)
+
+    const [following,setFollowing] = useState([])
+    const [followers, setFollowers] = useState([])
+    
     const projects = user.code
+
+    useEffect(()=>{
+        setFollowing(user.follows)
+        setFollowers(user.followed_by)
+    },[])
 
     const projectDisplay = projects.filter(project => {
         return project.title.toLowerCase().includes(search.toLowerCase())
@@ -43,9 +57,6 @@ function UserProfile({set,session}){
           });
       }
   
-    function test(pro){
-        console.log(pro)
-    }
 
       function copyProject(pro){
         fetch("/api/code",{
@@ -135,7 +146,50 @@ function UserProfile({set,session}){
               <ProjectCard key={project.id} project={project} leftFunc={copyProject} user={session} set={set}/>
             ))}
             </div>
+            
+
+            
+
             </div>
+
+            <div className="mx-auto mt-2 rounded-lg bg-base-100 shadow-xl">
+        <div className="mx-auto mt-2 max-w-7xl px-4 py-6 sm:px-6 lg:px-8 rounded-lg shadow-xl flex bg-base-100">
+            <h1 className="text-3xl font-bold tracking-tight text-gray-300">Following</h1>
+            
+            <div className="ml-auto">
+            <Collapse setCol={setFollowCol} col={followCol}/>
+            </div>
+        </div> 
+              
+              {/* map folling here */}
+              <div className={followCol ?"hidden" : "grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 p-0 md:p-6"}>
+
+                {following.map((follower) => (<UserCard key={follower.id} users={follower.following}/>))}
+              
+              </div>
+
+        </div>
+
+        <div className="mx-auto mt-2 rounded-lg bg-base-100 shadow-xl">
+
+              {/* Followers list */}
+
+              <div className="mx-auto mt-2 max-w-7xl px-4 py-6 sm:px-6 lg:px-8 rounded-lg shadow-xl flex bg-base-100">
+            <h1 className="text-3xl font-bold tracking-tight text-gray-300">Followers</h1>
+            
+            <div className="ml-auto">
+            <Collapse setCol={setFollowerCol} col={followerCol}/>
+            </div>
+        </div> 
+              
+              {/* map followers here here */}
+              <div className={followerCol?"hidden":  "grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 p-0 md:p-6"}>
+
+              {followers.map((follower) => (<UserCard key={follower.id} users={follower.follower}/>))}
+              
+              </div>
+
+        </div>
             
         </div>
         

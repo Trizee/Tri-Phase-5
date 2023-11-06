@@ -14,4 +14,6 @@ function UserCard({users}){
     )
 
 
-}export default UserCard
+}
+
+export default UserCard
