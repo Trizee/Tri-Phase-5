@@ -40,8 +40,8 @@ function ProjectCard({project, leftFunc, user,set }){
         </dialog>
 
         {/* Displaying */}
-        <div className="p-6 avatar justify-center">
-        <div className="h-40 w-40 rounded-full ring ring-gray-700 ring-offset-base-100 ring-offset-1 hover:ring-gray-300" onClick={()=>document.getElementById(`${project.id}`).showModal()} >
+        <div className="p-4 avatar justify-center tooltip" data-tip={project.title}>
+        <div className="h-36 w-36 rounded-full ring ring-gray-700 ring-offset-base-100 ring-offset-1 hover:ring-gray-300" onClick={()=>document.getElementById(`${project.id}`).showModal()}>
             <img src={project.pic} />
             
         </div>

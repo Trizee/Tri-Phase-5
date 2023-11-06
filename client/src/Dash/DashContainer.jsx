@@ -2,11 +2,13 @@ import ProjectForm from "./ProjectForm"
 import ProjectCard from "./ProjectCard"
 import { toast } from "react-toastify";
 import { useState, useEffect } from "react";
+import Collapse from "../Homepage/ProjectCollapse";
 
 function DashContainer({user}){
 
     const [search,setSearch] = useState('')
     const [projects,setProjects] = useState([])
+    const [collapse ,setCollapse] = useState(false)
 
     useEffect(()=>{
       fetch('/api/check_session')
@@ -64,8 +66,8 @@ function DashContainer({user}){
       }))
     }
 
+    console.log (collapse)
 
-    console.log(user)
     return(
         <div className="h-full bg-purple-800 p-1">
           <div className="mx-auto mt-2 max-w-7xl px-4 py-6 sm:px-6 lg:px-8 rounded-lg bg-base-100 shadow-xl">
@@ -80,10 +82,10 @@ function DashContainer({user}){
             <div className="form-control ml-auto mr-0 md:mr-6">
               <input type="text" placeholder="Search" onChange={(e)=>setSearch(e.target.value)} className="input input-bordered w-24 md:w-auto focus:bg-gray-900" />
             </div>
-
+            <Collapse set={setCollapse}/>
             <svg xmlns="http://www.w3.org/2000/svg" className="mt-2 h-8 w-8 hover:stroke-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
         </div> 
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 p-0 md:p-6 h">
+            <div className={collapse ? "hidden" : "grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 p-0 md:p-6"}>
             {projectDisplay.map((project)=>(
               <ProjectCard key={project.id} project={project} leftFunc={deleteProject} user={user} set={null}/>
             ))}
