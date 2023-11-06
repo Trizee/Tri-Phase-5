@@ -9,7 +9,7 @@ body {
     height: 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    transition: .25s linear ease;
+    transition: linear 2s ease;
 }
 
 ::-webkit-scrollbar{
