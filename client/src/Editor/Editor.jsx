@@ -60,9 +60,6 @@ function EditorComponent(){
 
   // tab tab-bordered tab-active tab tab-bordered
   // w-9 h-8 pt-2 stroke-white stroke-1
-  console.log(windowExpand)
-  console.log(editorExpand)
-
 
   return (
     <>

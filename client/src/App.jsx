@@ -65,6 +65,18 @@ function App() {
         action={async ({ request }) => {
           return (await request.formData());
         }} />
+        <Route
+         path="/room/:codeID" 
+         element = {<Drawer/>}
+         loader={async ({ request,params }) => {
+          return fetch(
+            `/api/code/${params.codeID}`,
+            { signal: request.signal }
+          );
+        }}
+        action={async ({ request }) => {
+          return (await request.formData());
+        }} />
       </Route>
     )
   )

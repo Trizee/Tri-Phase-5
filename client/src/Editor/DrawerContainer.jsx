@@ -1,10 +1,13 @@
 import EditorComponent from "./Editor"
 import { useState } from "react"
+import { useLoaderData } from "react-router-dom"
 
 
 function Drawer(){
 
-    const [pic,setPic] = useState('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/1024px-Windows_10_Default_Profile_Picture.svg.png')
+    let room = useLoaderData()
+
+    console.log(room)
 
     return(
         <div className="drawer">
@@ -18,17 +21,16 @@ function Drawer(){
             <h1 className="text-center text-2xl p-8 text-gray-200"><strong>CODEHESIVE</strong></h1>
             <div className="avatar w-full justify-center" onClick={()=>{}}>
                 <div className="w-40 rounded-full ring ring-gray-700 ring-offset-base-100 ring-offset-1 hover:ring-gray-500">
-                    <img src={pic} />
+                    <img src={room.user.pic} />
                 </div>
             </div>
-            <li className="text-center font-bold pt-4 text-lg text-gray-200">Example Username </li>
+            <li className="text-center font-bold pt-4 text-lg text-gray-200">{room.user.username}</li>
 
             <div className="mt-16 p-4">
-                <li className="font-bold pt-4 text-base text-gray-300">Repo Name</li>
-                <p>Lorem Ipsum</p>
+                <li className="font-bold pt-4 text-base text-gray-300">Project Name</li>
+                <p>{room.title}</p>
                 <li className="font-bold pt-4 text-base text-gray-300">Description</li>
-                <p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
-            "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."</p>
+                <p>{room.description}</p>
             </div>
 
             <div className="mt-auto p-4 pb-12 flex">
