@@ -9,6 +9,7 @@ function ProjectForm({projects,setProjects}){
     const [title,setTitle] = useState('')
     const [des,setDes] = useState('')
 
+
     function notifyE(string){
       toast.error(string, {
         position: "top-center",
@@ -55,6 +56,7 @@ function ProjectForm({projects,setProjects}){
           return response.json();
       })
       .then(data => {
+      versionZero(data.id)
       notifyS('Project Successfully Posted')
       setProjects([...projects,data])
       setTitle('')
@@ -65,6 +67,31 @@ function ProjectForm({projects,setProjects}){
           console.log("error", error.message);
           notifyE('Opps Something Went Wrong')
       });
+
+      function versionZero(id){
+        fetch("/api/version",{
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              html: '<h1>Version 0</h1>',
+              css: '',
+              js: '',
+              code_id: id
+          })
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error("Network response error");
+          }
+          return response.json();
+      })
+      .then(data => data)
+      .catch(error => {
+          console.log("error", error.message);
+      });
+      }
       
       }  
 
