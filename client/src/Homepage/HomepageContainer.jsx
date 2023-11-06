@@ -10,8 +10,6 @@ function HomePage({user,set}){
     const [showcase,setShowcase] = useState(false)
     const [following,setFollowing] = useState(false)
 
-    // clothes useState setClothes([..clothes,data])
-    // make a fetch for the code and display them in nice ui homescreen
     useEffect(()=>{
         fetch('/api/code')
         .then(response => response.json())
@@ -81,6 +79,21 @@ function HomePage({user,set}){
           <div className="mx-auto mt-1 max-w-7xl px-4 py-6 sm:px-6 lg:px-8 rounded-lg bg-base-100 shadow-xl">
             <h1 className="text-3xl font-bold tracking-tight text-gray-300 text-center">Community</h1>
           </div>
+
+        {/* section for top coders */}
+
+        <div className="m-auto max-w-7xl mt-2 mb-2 shadow-xl rounded-lg bg-base-100">
+        <div className="mx-auto mt-2 max-w-7xl px-4 py-6 sm:px-6 lg:px-8 rounded-lg shadow-xl flex">
+            <h1 className="text-3xl font-bold tracking-tight text-gray-300">Top Creators</h1>
+            
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 p-0 md:p-6">
+            {/* {projectDisplay.map((project)=>(
+              <ProjectCard key={project.id} project={project} leftFunc={copyProject} user={user} set={set} />
+            ))} */}
+        </div>
+        </div>
+
         
         <div className="m-auto max-w-7xl mt-2 mb-2 shadow-xl rounded-lg bg-base-100">
         <div className="mx-auto mt-2 max-w-7xl px-4 py-6 sm:px-6 lg:px-8 rounded-lg shadow-xl flex">
@@ -103,7 +116,7 @@ function HomePage({user,set}){
 
               {/* Make this section for following */}
 
-        <div className="m-auto max-w-7xl mt-2 mb-2 shadow-xl rounded-lg bg-base-100">
+        <div className={user ? "m-auto max-w-7xl mt-2 mb-2 shadow-xl rounded-lg bg-base-100" : 'hidden'}>
         <div className="mx-auto mt-2 max-w-7xl px-4 py-6 sm:px-6 lg:px-8 rounded-lg shadow-xl flex">
             <h1 className="text-3xl font-bold tracking-tight text-gray-300">Following</h1>
             
@@ -119,6 +132,8 @@ function HomePage({user,set}){
             ))} */}
         </div>
         </div>
+
+        
         </div>
         </>
     )

@@ -54,7 +54,7 @@ function App() {
         <Route path="*" element={<PageNotFound />} />
         <Route
          path="/user/:userID" 
-         element = {<UserProfile set={setPreview}/>}
+         element = {<UserProfile set={setPreview} session={user}/>}
          loader={async ({ request,params }) => {
           return fetch(
             `/api/users/${params.userID}`,

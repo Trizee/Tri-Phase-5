@@ -1,7 +1,7 @@
 import ProjectMockup from "./ProjectMockup"
 import { useLocation,useNavigate } from "react-router-dom"
 
-function ProjectCard({project, leftFunc, user,set }){
+function ProjectCard({project, leftFunc, user, set}){
 
     const location = useLocation()
     const navigate = useNavigate()
