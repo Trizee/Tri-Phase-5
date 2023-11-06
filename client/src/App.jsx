@@ -39,7 +39,6 @@ function App() {
       )
   },[])
 
-  console.log(user)
 
   const router = createBrowserRouter(
     createRoutesFromElements(

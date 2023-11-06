@@ -2,19 +2,27 @@ import { useState,useEffect } from "react"
 import ProjectCard from "../Dash/ProjectCard"
 import { toast } from "react-toastify";
 import Collapse from "./ProjectCollapse";
+import UserCard from "../UserProfiles/UserCards";
 
 function HomePage({user,set}){
 
     const [projects,setProjects] = useState([])
     const [search,setSearch] = useState('')
     const [showcase,setShowcase] = useState(false)
-    const [following,setFollowing] = useState(false)
+    const [userCol,setUserCol] = useState(false)
+    const [allUser,setAllUsers] = useState([])
 
     useEffect(()=>{
         fetch('/api/code')
         .then(response => response.json())
         .then(data => setProjects(data))
       },[])
+
+    useEffect(()=>{
+      fetch('/api/users')
+        .then(response => response.json())
+        .then(data => setAllUsers(data))
+    },[])
 
     const projectDisplay = projects.filter(project => {
       return project.title.toLowerCase().includes(search.toLowerCase())
@@ -84,13 +92,13 @@ function HomePage({user,set}){
 
         <div className="m-auto max-w-7xl mt-2 mb-2 shadow-xl rounded-lg bg-base-100">
         <div className="mx-auto mt-2 max-w-7xl px-4 py-6 sm:px-6 lg:px-8 rounded-lg shadow-xl flex">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-300">Top Creators</h1>
-            
+            <h1 className="text-3xl font-bold tracking-tight text-gray-300">Creators</h1>
+            <div className="ml-auto">
+            <Collapse setCol={setUserCol} col={userCol}/>
+            </div>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 p-0 md:p-6">
-            {/* {projectDisplay.map((project)=>(
-              <ProjectCard key={project.id} project={project} leftFunc={copyProject} user={user} set={set} />
-            ))} */}
+        <div className={userCol? "hidden":"grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 p-0 md:p-6"}>
+            {allUser.map((use)=>(<UserCard users={use}/>))}
         </div>
         </div>
 
