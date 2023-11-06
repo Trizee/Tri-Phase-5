@@ -67,9 +67,10 @@ function DashContainer({user}){
     }
 
     const [col,setCol] = useState(false)
+    const [formCol,setFormCol] = useState(false)
 
     return(
-        <div className="h-full bg-purple-800 p-1">
+        <div className="min-h-screen bg-purple-800 p-1">
           <div className="mx-auto mt-2 max-w-7xl px-4 py-6 sm:px-6 lg:px-8 rounded-lg bg-base-100 shadow-xl">
             <h1 className="text-3xl font-bold tracking-tight text-gray-300 text-center">Dashboard</h1>
           </div>
@@ -82,8 +83,9 @@ function DashContainer({user}){
             <div className="form-control ml-auto mr-0 md:mr-6">
               <input type="text" placeholder="Search" onChange={(e)=>setSearch(e.target.value)} className="input input-bordered w-24 md:w-auto focus:bg-gray-900" />
             </div>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 mt-2 h-8 w-8 hover:stroke-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
             <Collapse setCol={setCol} col={col}/>
-            <svg xmlns="http://www.w3.org/2000/svg" className="mt-2 h-8 w-8 hover:stroke-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
         </div> 
             <div className={col ? "hidden" : "grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 p-0 md:p-6"}>
             {projectDisplay.map((project)=>(
@@ -92,7 +94,18 @@ function DashContainer({user}){
             </div>
             </div>
             {/* Your content */}
+            <div className="mx-auto mt-2 max-w-7xl px-4 py-6 sm:px-6 lg:px-8 rounded-lg shadow-xl bg-base-100">
+            <div className="flex ">
+            <h1 className="text-3xl font-bold tracking-tight text-gray-300">Create A New Project</h1>
+              <div className="ml-auto">
+                <Collapse setCol={setFormCol} col={formCol}/>
+              </div>
+            </div>
+            <div className={formCol ? "hidden" : "block"}>
             <ProjectForm projects={projects} setProjects={setProjects}/>
+            </div>
+        </div> 
+            
         </div>
         
        </main>

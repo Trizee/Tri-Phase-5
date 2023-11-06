@@ -69,11 +69,10 @@ function ProjectForm({projects,setProjects}){
       }  
 
     return(
-    <div className=" bg-base-100 rounded-md shadow-lg p-4 w-full md:p-16 mt-2">
+    <div className=" bg-base-100 rounded-md m-0 p-0 w-full md:p-16 mt-2 ">
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-100 sm:text-4xl">Create A New Project</h2>
           <p className="mt-2 text-lg leading-8 text-gray-200">
-            Start today and host your own rooms to code collaberative code.
+            Start today and host your own rooms to code with friends.
           </p>
         </div>
         <form action="#" method="POST" className="mx-auto mt-16 max-w-xl sm:mt-20" onSubmit={handleSubmit}>

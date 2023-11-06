@@ -16,7 +16,7 @@ function FullScreenPreview({preview}){
                 <div className="modal-action p-0 m-0 w-32 md:w-auto">
                     <form method="dialog">
                         {/* if there is a button, it will close the modal */}
-                        <button onClick={()=>navigate('/home')} className="block text-xl text-gray-300 hover:text-white">x</button>
+                        <button onClick={()=>navigate(-1)} className="block text-xl text-gray-300 hover:text-white">x</button>
                     </form>
                 </div>
                 </div>

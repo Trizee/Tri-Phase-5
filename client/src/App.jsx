@@ -19,7 +19,7 @@ import HomePage from "./Homepage/HomepageContainer";
 import ProfilePage from "./Pages/Profile";
 import DashContainer from "./Dash/DashContainer";
 import FullScreenPreview from "./Homepage/FullScreenPreview";
-import RouteTest from "./Routetest";
+import UserProfile from "./UserProfiles/UserProfile";
 
 
 
@@ -53,8 +53,8 @@ function App() {
         <Route path="/preview" element={<FullScreenPreview preview={preview}/>} />
         <Route path="*" element={<PageNotFound />} />
         <Route
-         path="/test/:userID" 
-         element = {<RouteTest />}
+         path="/user/:userID" 
+         element = {<UserProfile set={setPreview}/>}
          loader={async ({ request,params }) => {
           return fetch(
             `/api/users/${params.userID}`,

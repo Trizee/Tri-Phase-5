@@ -2,10 +2,8 @@
 
 function Collapse({setCol,col}){
 
-    console.log(col)
-
     return(
-        <label className="btn btn-circle swap swap-rotate mr-0 md:mr-4" >
+        <label className="btn btn-circle swap swap-rotate mr-0 md:mr-4 ml-2" >
   
         {/* this hidden checkbox controls the state */}
         <input type="checkbox" onClick={()=>setCol(!col)}/>
