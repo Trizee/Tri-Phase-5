@@ -60,6 +60,9 @@ function EditorComponent(){
 
   // tab tab-bordered tab-active tab tab-bordered
   // w-9 h-8 pt-2 stroke-white stroke-1
+  console.log(windowExpand)
+  console.log(editorExpand)
+
 
   return (
     <>
@@ -82,7 +85,7 @@ function EditorComponent(){
         <a className={active === 'html'?'tab tab-bordered tab-active mr-4 ml-4':'tab tab-bordered mr-4 ml-4'} onClick={()=>setActive('html')}>HTML</a> 
         <a className={active === 'css'?'tab tab-bordered tab-active mr-4 ml-4':'tab tab-bordered mr-4 ml-4'} onClick={()=>setActive('css')}>CSS</a> 
         <a className={active === 'js'?'tab tab-bordered tab-active mr-4 ml-4':'tab tab-bordered mr-4 ml-4'} onClick={()=>setActive('js')}>JAVASCRIPT</a>
-        <Expand set={setEditorExpand}/>
+        <Expand set={setEditorExpand} value={editorExpand}/>
     </ul>
     <EditorModuleHTML value={html} set={setHtml} active={active}/>
     <EditorModuleCSS value={css} set={setCss} active={active}/>
@@ -91,7 +94,7 @@ function EditorComponent(){
     <div className={windowCss()}>
     <div className="mockup-browser-toolbar" >
     <div className="input">YourWebsite.com</div>
-    <Expand set={setWindowExpand}/>
+    <Expand set={setWindowExpand} value={windowExpand}/>
     </div>
     <iframe 
     srcDoc = {srcDoc}
