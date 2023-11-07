@@ -1,5 +1,5 @@
 import EditorComponent from "./Editor"
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import { useLoaderData,useNavigate } from "react-router-dom"
 import { toast } from "react-toastify";
 
@@ -13,6 +13,18 @@ function Drawer(){
     const [html,setHtml] = useState('')
     const [css,setCss] = useState('')
     const [js,setJs] = useState('')
+
+    console.log(room.version)
+
+    useEffect(()=>{
+        setTimeout(()=>{
+            if(html === '' && css === '' && js ===''){
+                setHtml(version.html)
+                setCss(version.css)
+                setJs(version.js)
+            }
+        },750)
+    },[])
 
     function notifyE(string){
         toast.error(string, {
@@ -74,8 +86,6 @@ function Drawer(){
         notifyE('Opps Something Went Wrong')
     });
     }
-    
-    console.log(version)
 
     return(
         <div className="drawer">
@@ -108,7 +118,8 @@ function Drawer(){
                 <option disabled >Version</option>
                 <option>Create New Version</option>
                 {room.version.map((option)=>(
-                    <option key={option.id} value={option} onChange={(e)=>setVersion(e.target.value)}>{option.id}</option>
+                    // <option key={option.id} value={option} >{option.id}</option>
+                    console.log(option)
                 ))}
                 </select>
                 </li>

@@ -87,7 +87,7 @@ function EditorComponent({room,html,setHtml,css,setCss,js,setJs}){
     </div>
     <div className={windowCss()}>
     <div className="mockup-browser-toolbar" >
-    <div className="input">YourWebsite.com</div>
+    <div className="input text-center">{room.title}</div>
     <Expand set={setWindowExpand} value={windowExpand}/>
     </div>
     <iframe 
