@@ -8,8 +8,8 @@ import UserCard from "./UserCards";
 
 function UserProfile({set,session}){
 
-    let user = useLoaderData()
-
+    let userVar = useLoaderData()
+    const [user,setUser] = useState(userVar)
     
 
     const [col,setCol] = useState(false)
@@ -130,6 +130,7 @@ function UserProfile({set,session}){
                 return response.json();
             })
             .then(data => {
+            updateRoom()
             notifyS(`You are now Following ${user.username}`)
             })
             .catch(error => {
@@ -137,6 +138,12 @@ function UserProfile({set,session}){
                 notifyE('Opps Something went wrong')
             });
     }
+
+    function updateRoom(){
+        fetch(`/api/users/${user.id}`)
+          .then(response => response.json())
+          .then(data => setUser(data))
+        }
 
     const [btnControl,setBtnControl] = useState(false)
     useEffect(()=>{
