@@ -3,11 +3,16 @@ import { useNavigate } from "react-router-dom"
 function FullScreenPreview({preview}){
 
     const navigate = useNavigate()
+
+    const previewVersion = preview.version[preview.version.length -1]
     
     const srcDoc = `<html>
-    <body><h1>Nothing Yet</h1></body>
-    <style>body{text-align:center; font-size:12px;}</style>
+    <body>${previewVersion.html}</body>
+    <style>${previewVersion.css}</style>
+    <script>${previewVersion.js}</script>
     </html>`
+
+    console.log(preview)
     
     return(
         <div className="mockup-browser rounded-none h-screen w-auto">

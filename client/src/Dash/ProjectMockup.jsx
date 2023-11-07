@@ -2,11 +2,14 @@
 
 function ProjectMockup({project}){
 
+
+    const preview = project.version[project.version.length-1]
+
     const srcDoc = 
     `
     <html>
-    <body><h1>Nothing Yet</h1></body>
-    <style>body{text-align:center; font-size:12px;}</style>
+    <body>${preview.html}</body>
+    <style>${preview.css}</style>
     </html>
     `
 

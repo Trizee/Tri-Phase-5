@@ -9,7 +9,6 @@ function ProjectForm({projects,setProjects}){
     const [title,setTitle] = useState('')
     const [des,setDes] = useState('')
 
-
     function notifyE(string){
       toast.error(string, {
         position: "top-center",
@@ -46,7 +45,7 @@ function ProjectForm({projects,setProjects}){
           body: JSON.stringify({
               title: title,
               description: des,
-              pic: pic
+              pic: pic,
           })
       })
       .then(response => {
@@ -58,7 +57,7 @@ function ProjectForm({projects,setProjects}){
       .then(data => {
       versionZero(data.id)
       notifyS('Project Successfully Posted')
-      setProjects([...projects,data])
+      fetchUpdate()
       setTitle('')
       setDes('')
       setPic('https://www.atlassian.com/blog/wp-content/uploads/2022/01/d02ed553-f52c-43ec-b86e-c7dfec487ef9.png')
@@ -76,7 +75,7 @@ function ProjectForm({projects,setProjects}){
           },
           body: JSON.stringify({
               html: '<h1>Version 0</h1>',
-              css: '',
+              css: 'body{text-align:center}',
               js: '',
               code_id: id
           })
@@ -91,9 +90,17 @@ function ProjectForm({projects,setProjects}){
       .catch(error => {
           console.log("error", error.message);
       });
-      }
+      }}
       
-      }  
+    function fetchUpdate(){
+      fetch('/api/check_session')
+      .then(response => response.json())
+      .then(data => {
+        if (data.username){
+          setProjects(data.code)
+        }}
+        )
+    }
 
     return(
     <div className=" bg-base-100 rounded-md m-0 p-0 w-full md:p-16 mt-2 ">
