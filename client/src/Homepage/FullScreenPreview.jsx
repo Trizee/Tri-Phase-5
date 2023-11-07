@@ -11,8 +11,6 @@ function FullScreenPreview({preview}){
     <style>${previewVersion.css}</style>
     <script>${previewVersion.js}</script>
     </html>`
-
-    console.log(preview)
     
     return(
         <div className="mockup-browser rounded-none h-screen w-auto">

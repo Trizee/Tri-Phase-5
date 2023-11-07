@@ -20,8 +20,6 @@ function EditorModuleHTML({value,set,active,room}){
   
         const binding = new MonacoBinding(type, editorRef.current.getModel(), new Set([editorRef.current]), provider.awareness)
         
-        console.log(provider) 
-        
       }
 
     return (

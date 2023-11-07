@@ -14,8 +14,6 @@ function Drawer(){
     const [css,setCss] = useState('')
     const [js,setJs] = useState('')
 
-    console.log(room.version)
-
     useEffect(()=>{
         setTimeout(()=>{
             if(html === '' && css === '' && js ===''){
@@ -114,12 +112,11 @@ function Drawer(){
             <div className="mt-auto p-1">
     
                 <li className="font-bold text-base text-gray-300">
-                <select className="select primary w-auto">
+                <select className="select primary w-auto" onChange={(e)=>setVersion(JSON.parse(e.target.value))}>
                 <option disabled >Version</option>
-                <option>Create New Version</option>
-                {room.version.map((option)=>(
-                    // <option key={option.id} value={option} >{option.id}</option>
-                    console.log(option)
+                <option value={'New'}>Create New Version</option>
+                {room.version.map((ver)=>(
+                    <option key={ver.id} value={JSON.stringify(ver)} >{ver.id}</option>
                 ))}
                 </select>
                 </li>
