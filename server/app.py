@@ -1,4 +1,4 @@
-from models import db, User, Follows, Codes, Rooms, Versions
+from models import db, User, Follows, Codes, Versions
 from flask_restful import Api, Resource
 from flask_migrate import Migrate
 from flask import Flask, request ,session
@@ -184,48 +184,6 @@ class CodeByID(Resource):
     
 api.add_resource(CodeByID,'/code/<int:id>')
 
-class Room(Resource):
-    
-    def get(self):
-        rooms = [room.to_dict() for room in Rooms.query.all()]
-        if not rooms:
-            return {'message': 'data not found'},404
-        return rooms,200
-    
-    def post(self):
-        data = request.get_json()
-        try:
-            new_room = Rooms(
-                url = data['url'],
-                user_id = session['user_id'],
-                code_id = data['code_id'])
-        except ValueError as e:
-            return {"errors": ["validation errors"]}, 400
-        db.session.add(new_room)
-        db.session.commit()
-
-        return new_room.to_dict(),201
-
-api.add_resource(Room,'/room')
-
-class RoomByID(Resource):
-
-    def get(self,id):
-        room = Rooms.query.filter_by(id = id).first()
-        if not room:
-            return {'message': 'data not found'},404
-        return room.to_dict(),200
-
-    def delete(self,id):
-        room = Rooms.query.filter_by(id = id).first()
-        if room:
-            db.session.delete(room)
-            db.session.commit()
-            return {'message': 'data deleted'}, 204
-        return {'message': 'data not found'}, 404
-    
-api.add_resource(RoomByID,'/room/<int:id>')
-
 class Version(Resource):
 
     def get(self):
@@ -238,6 +196,7 @@ class Version(Resource):
         data = request.get_json()
         try:
             new_version = Versions(
+                name = data['name'],
                 html = data['html'],
                 css = data['css'],
                 js = data['js'],

@@ -15,7 +15,6 @@ class User(db.Model, SerializerMixin):
     username = db.Column(db.String, nullable=False, unique=True)
     _password_hash = db.Column(db.String, nullable=False)
 
-    rooms = db.relationship('Rooms', back_populates='user', cascade='all, delete-orphan')
     follows = db.relationship('Follows', back_populates='follower', foreign_keys='Follows.following_user', cascade='all, delete-orphan')
     followed_by = db.relationship('Follows', back_populates='following', foreign_keys='Follows.followed_user', cascade='all, delete-orphan')
     code = db.relationship('Codes', back_populates='user', cascade='all, delete-orphan')
@@ -45,6 +44,15 @@ class Follows(db.Model, SerializerMixin):
     follower = db.relationship('User', back_populates='follows', foreign_keys=[following_user])
     following = db.relationship('User', back_populates='followed_by', foreign_keys=[followed_user])
 
+    def validate_relationship(self, key, value):
+        if key == 'following_user':
+            if self.followed_user == value:
+                raise ValueError("Cannot follow a user you are already in a relationship with.")
+        elif key == 'followed_user':
+            if self.following_user == value:
+                raise ValueError("Cannot be followed by a user you are already in a relationship with.")
+        return value
+
 
 class Codes(db.Model, SerializerMixin):
     __tablename__ = 'code_table'
@@ -59,24 +67,8 @@ class Codes(db.Model, SerializerMixin):
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, onupdate=func.now())
 
-    rooms = db.relationship('Rooms', back_populates='code', cascade='all, delete-orphan')
     version = db.relationship('Versions', back_populates='code', cascade='all, delete-orphan')
     user = db.relationship('User', back_populates='code')
-
-
-class Rooms(db.Model, SerializerMixin):
-    __tablename__ = 'room_table'
-
-    serialize_rules = ('-user.rooms','-user.code','-code.user','-code.rooms')
-
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
-    code_id = db.Column(db.Integer, db.ForeignKey('code_table.id'))
-    url = db.Column(db.String, unique=True)
-
-    user = db.relationship('User', back_populates='rooms')
-    code = db.relationship('Codes', back_populates='rooms')
-
 
 class Versions(db.Model, SerializerMixin):
     __tablename__ = 'versions_table'
@@ -84,6 +76,7 @@ class Versions(db.Model, SerializerMixin):
     serialize_rules = ('-code.version',)
 
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
     html = db.Column(db.String)
     css = db.Column(db.String)
     js = db.Column(db.String)

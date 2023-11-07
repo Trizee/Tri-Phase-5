@@ -10,8 +10,6 @@ function UserProfile({set,session}){
 
     let user = useLoaderData()
 
-    console.log(user)
-
     const [col,setCol] = useState(false)
     const [search,setSearch] = useState('')
     const [followCol,setFollowCol] = useState(false)
@@ -93,10 +91,11 @@ function UserProfile({set,session}){
               'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-              html: pro.version[pro.version.length-1].html,
-              css: pro.version[pro.version.length-1].css,
-              js: pro.version[pro.version.length-1].js,
-              code_id: id
+            name: pro.version[pro.version.length-1].name,
+            html: pro.version[pro.version.length-1].html,
+            css: pro.version[pro.version.length-1].css,
+            js: pro.version[pro.version.length-1].js,
+            code_id: id
           })
       })
       .then(response => {
@@ -137,16 +136,19 @@ function UserProfile({set,session}){
             });
     }
 
-    function followBtnCss(){
-        
-    }
+    const [btnControl,setBtnControl] = useState(false)
+    useEffect(()=>{
+        if(user.id === session.id){
+            setBtnControl(true)
+        }
+    },[])
 
     return(
         <>
         <div className="min-h-screen bg-purple-800 p-1">
           <div className="mx-auto mt-2 max-w-7xl px-4 py-6 sm:px-6 lg:px-8 rounded-lg bg-base-100 shadow-xl flex">
             <h1 className="text-3xl font-bold tracking-tight text-gray-300">{user.username}</h1>
-            <p className={user === session ? 'btn ml-auto btn-disabled': "btn ml-auto"} onClick={()=>followUser()}>Follow</p>
+            <button className="btn ml-auto" onClick={()=>followUser()} disabled={btnControl} >Follow</button>
           </div>
         <main>
         <div className="mx-auto mt-2 max-w-7xl px-4 py-6 sm:px-6 lg:px-8 rounded-lg shadow-xl flex bg-base-100">

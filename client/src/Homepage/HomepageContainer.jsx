@@ -94,6 +94,7 @@ function HomePage({user,set}){
               'Content-Type': 'application/json'
           },
           body: JSON.stringify({
+              name: pro.version[pro.version.length-1].name,
               html: pro.version[pro.version.length-1].html,
               css: pro.version[pro.version.length-1].css,
               js: pro.version[pro.version.length-1].js,

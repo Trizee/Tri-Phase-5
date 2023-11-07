@@ -16,6 +16,9 @@ function Drawer({user}){
     const [html,setHtml] = useState('')
     const [css,setCss] = useState('')
     const [js,setJs] = useState('')
+    const [verName,setVerName] = useState('')
+
+    console.log(verName)
 
     useEffect(()=>{
         setTimeout(()=>{
@@ -67,32 +70,39 @@ function Drawer({user}){
 
 
     function newVersion(){
-      fetch("/api/version",{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            html: html,
-            css: css,
-            js: js,
-            code_id: room.id
+      if(verName === ''){
+        notifyE('Please Enter A Version Name')
+      }
+      else{
+        fetch("/api/version",{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: verName,
+                html: html,
+                css: css,
+                js: js,
+                code_id: room.id
+            })
         })
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("Network response error");
-        }
-        return response.json();
-    })
-    .then(data => {
-        notifyS('Post Successful')
-        updateRoom()
-    })
-    .catch(error => {
-        console.log("error", error.message);
-        notifyE('Opps Something Went Wrong')
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response error");
+            }
+            return response.json();
+        })
+        .then(data => {
+            notifyS('Post Successful')
+            updateRoom()
+            setVerName('')
+        })
+        .catch(error => {
+            console.log("error", error.message);
+            notifyE('Opps Something Went Wrong')
+        });
+      }
     }
 
     const [dis,setDis] = useState(false)
@@ -120,7 +130,7 @@ function Drawer({user}){
             </div>
             <li className="text-center font-bold pt-4 text-lg text-gray-200">{room.user.username}</li>
 
-            <div className="mt-16 p-4">
+            <div className="mt-2 p-2">
                 <li className="font-bold pt-4 text-base text-gray-300">Project Name</li>
                 <p>{room.title}</p>
                 <li className="font-bold pt-4 text-base text-gray-300">Description</li>
@@ -128,20 +138,20 @@ function Drawer({user}){
             </div>
 
             <div className="mt-auto p-1">
-                <input type="text" placeholder="Enter Version Name" className="input w-full max-w-xs mb-2" disabled={dis}/>
+                
                 <li className="font-bold text-base text-gray-300">
                 <select className="select primary w-auto" onChange={(e)=>setVersion(JSON.parse(e.target.value))} disabled={dis}>
                 <option disabled >Version</option>
                 {room.version.map((ver)=>(
-                    <option key={ver.id} value={JSON.stringify(ver)} >{ver.id}</option>
+                    <option key={ver.id} value={JSON.stringify(ver)} >{ver.name}</option>
                 ))}
                 </select>
                 </li>
-                
+                <button className="btn bg-gray-800 hover:bg-gray-700 w-full mt-2" onClick={()=>loadCode()} disabled={dis}>Load Code</button>
                 
             </div>
+                <input type="text" placeholder="Enter Version Name" className="input w-full max-w-xs m-1" disabled={dis} onChange={(e)=>setVerName(e.target.value)}/>
                 <button className="btn bg-gray-800 hover:bg-gray-700 m-1" onClick={()=>newVersion()} disabled={dis}>commit</button>
-                <button className="btn w-auto bg-gray-800 hover:bg-gray-700 m-1" onClick={()=>loadCode()} disabled={dis}>Load Code</button>
             </ul>
         </div>
         </div>

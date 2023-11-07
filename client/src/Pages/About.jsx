@@ -2,8 +2,6 @@ import { useNavigate } from "react-router-dom"
 
 function About(){
 
-    const navigate = useNavigate()
-
     return(
         
       <div className="h-screen bg-purple-800 m-0 p-0">
@@ -30,7 +28,7 @@ function About(){
             <p className="text-xl text-white mb-8" data-aos="fade-up" data-aos-delay="200">This is my phase 5 project for Flatirons coding bootcamp, Thank you for visting and feel free to contact me at trihoang09@gmail.com !</p>
             <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center">
               <div data-aos="fade-up" data-aos-delay="400">
-                <a className="btn text-white bg-purple-600 hover:bg-purple-700 w-full mb-4 sm:w-auto sm:mb-0" onClick={()=>navigate('/editor')}>Try it out</a>
+                <a className="btn text-white bg-purple-600 hover:bg-purple-700 w-full mb-4 sm:w-auto sm:mb-0" href="https://www.linkedin.com/in/tri-hoang-730602286/" target="_blank">Linkedin</a>
               </div>
               <div data-aos="fade-up" data-aos-delay="600">
                 <a className="btn text-white bg-gray-700 hover:bg-gray-900 w-full sm:w-auto sm:ml-4" href="https://github.com/Trizee/Tri-Phase-5" target="_blank">View On Github</a>

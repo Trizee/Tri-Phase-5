@@ -3,7 +3,7 @@ import UploadWidget from "../Assets/UploadWidget"
 import { toast } from "react-toastify";
 
 
-function ProjectForm({projects,setProjects}){
+function ProjectForm({setProjects}){
 
     const [pic,setPic] = useState('https://www.atlassian.com/blog/wp-content/uploads/2022/01/d02ed553-f52c-43ec-b86e-c7dfec487ef9.png')
     const [title,setTitle] = useState('')
@@ -74,8 +74,9 @@ function ProjectForm({projects,setProjects}){
               'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-              html: '<h1>Version 0</h1>',
-              css: 'body{text-align:center}',
+              name: 'Version 0',
+              html: '',
+              css: '',
               js: '',
               code_id: id
           })
