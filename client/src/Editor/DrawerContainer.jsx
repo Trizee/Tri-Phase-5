@@ -110,11 +110,10 @@ function Drawer(){
             </div>
 
             <div className="mt-auto p-1">
-    
+                <input type="text" placeholder="Enter Version Name" className="input w-full max-w-xs mb-2" />
                 <li className="font-bold text-base text-gray-300">
                 <select className="select primary w-auto" onChange={(e)=>setVersion(JSON.parse(e.target.value))}>
                 <option disabled >Version</option>
-                <option value={'New'}>Create New Version</option>
                 {room.version.map((ver)=>(
                     <option key={ver.id} value={JSON.stringify(ver)} >{ver.id}</option>
                 ))}
