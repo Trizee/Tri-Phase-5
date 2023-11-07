@@ -77,6 +77,7 @@ function UserProfile({set,session}){
               return response.json();
           })
           .then(data => {
+            copyVersion(pro,data.id)
           notifyS('Copied To Your Dash')
           })
           .catch(error => {
@@ -84,6 +85,32 @@ function UserProfile({set,session}){
               notifyE('Opps Something went wrong')
           });
       }
+
+      function copyVersion(pro,id){
+        fetch("/api/version",{
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              html: pro.version[pro.version.length-1].html,
+              css: pro.version[pro.version.length-1].css,
+              js: pro.version[pro.version.length-1].js,
+              code_id: id
+          })
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error("Network response error");
+          }
+          return response.json();
+      })
+      .then(data => data)
+      .catch(error => {
+          console.log("error", error.message);
+      });
+      
+    }
 
     function followUser(){
         fetch("/api/follows",{

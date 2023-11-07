@@ -17,6 +17,7 @@ function ProjectCard({project, leftFunc, user, set}){
         }
     }
 
+    console.log(project)
 
     function preview(){
         set(project)

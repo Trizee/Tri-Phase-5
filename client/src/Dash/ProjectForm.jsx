@@ -67,7 +67,7 @@ function ProjectForm({projects,setProjects}){
           notifyE('Opps Something Went Wrong')
       });
 
-      function versionZero(id){
+    function versionZero(id){
         fetch("/api/version",{
           method: 'POST',
           headers: {

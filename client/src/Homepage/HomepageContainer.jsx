@@ -68,7 +68,7 @@ function HomePage({user,set}){
         body: JSON.stringify({
             title: `${pro.title}-Copy`,
             description: `${pro.description} - Creator: ${pro.user.username}`,
-            pic: pro.pic
+            pic: pro.pic,
         })
         })
         .then(response => {
@@ -78,12 +78,39 @@ function HomePage({user,set}){
             return response.json();
         })
         .then(data => {
+        copyVersion(pro,data.id)
         notifyS('Copied To Your Dash')
         })
         .catch(error => {
             console.log("error", error.message);
             notifyE('Opps Something went wrong')
         });
+    }
+
+    function copyVersion(pro,id){
+        fetch("/api/version",{
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              html: pro.version[pro.version.length-1].html,
+              css: pro.version[pro.version.length-1].css,
+              js: pro.version[pro.version.length-1].js,
+              code_id: id
+          })
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error("Network response error");
+          }
+          return response.json();
+      })
+      .then(data => data)
+      .catch(error => {
+          console.log("error", error.message);
+      });
+      
     }
 
     return(

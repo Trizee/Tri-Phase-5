@@ -65,7 +65,7 @@ function Signup({setUser}){
       })
       .then(data => {
         setUser(data)
-        navigate('/dash')
+        navigate('/home')
         notifyS('Welcome To The Club')
       })
       .catch(error => {
