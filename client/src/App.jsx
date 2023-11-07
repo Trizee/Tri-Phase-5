@@ -67,7 +67,7 @@ function App() {
         }} />
         <Route
          path="/room/:codeID" 
-         element = {<Drawer/>}
+         element = {<Drawer user={user}/>}
          loader={async ({ request,params }) => {
           return fetch(
             `/api/code/${params.codeID}`,

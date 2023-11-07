@@ -14,8 +14,6 @@ function DashContainer({user}){
     const [followers,setFollowers] = useState([])
     const [following,setFollowing] = useState([])
 
-    console.log(followers)
-
     useEffect(()=>{
       fetch('/api/check_session')
       .then(response => response.json())

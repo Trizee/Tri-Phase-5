@@ -4,10 +4,13 @@ import { useLoaderData,useNavigate } from "react-router-dom"
 import { toast } from "react-toastify";
 
 
-function Drawer(){
+function Drawer({user}){
 
-    let room = useLoaderData()
+    let roomVar = useLoaderData()
+
     const navigate = useNavigate()  
+
+    const [room ,setRoom] = useState(roomVar)
     const [version,setVersion] = useState(room.version[room.version.length - 1])
 
     const [html,setHtml] = useState('')
@@ -23,6 +26,12 @@ function Drawer(){
             }
         },750)
     },[])
+
+    function updateRoom(){
+    fetch(`/api/code/${room.id}`)
+      .then(response => response.json())
+      .then(data => setRoom(data))
+    }
 
     function notifyE(string){
         toast.error(string, {
@@ -78,12 +87,21 @@ function Drawer(){
     })
     .then(data => {
         notifyS('Post Successful')
+        updateRoom()
     })
     .catch(error => {
         console.log("error", error.message);
         notifyE('Opps Something Went Wrong')
     });
     }
+
+    const [dis,setDis] = useState(false)
+
+    useEffect(()=>{
+        if(user.id !== roomVar.user_id){
+            setDis(true)
+        }
+    },[])
 
     return(
         <div className="drawer">
@@ -110,9 +128,9 @@ function Drawer(){
             </div>
 
             <div className="mt-auto p-1">
-                <input type="text" placeholder="Enter Version Name" className="input w-full max-w-xs mb-2" />
+                <input type="text" placeholder="Enter Version Name" className="input w-full max-w-xs mb-2" disabled={dis}/>
                 <li className="font-bold text-base text-gray-300">
-                <select className="select primary w-auto" onChange={(e)=>setVersion(JSON.parse(e.target.value))}>
+                <select className="select primary w-auto" onChange={(e)=>setVersion(JSON.parse(e.target.value))} disabled={dis}>
                 <option disabled >Version</option>
                 {room.version.map((ver)=>(
                     <option key={ver.id} value={JSON.stringify(ver)} >{ver.id}</option>
@@ -122,8 +140,8 @@ function Drawer(){
                 
                 
             </div>
-                <button className="btn bg-gray-800 hover:bg-gray-700 m-1" onClick={()=>newVersion()}>commit</button>
-                <button className="btn w-auto bg-gray-800 hover:bg-gray-700 m-1" onClick={()=>loadCode()}>Load Code</button>
+                <button className="btn bg-gray-800 hover:bg-gray-700 m-1" onClick={()=>newVersion()} disabled={dis}>commit</button>
+                <button className="btn w-auto bg-gray-800 hover:bg-gray-700 m-1" onClick={()=>loadCode()} disabled={dis}>Load Code</button>
             </ul>
         </div>
         </div>
