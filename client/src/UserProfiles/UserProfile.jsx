@@ -10,6 +10,8 @@ function UserProfile({set,session}){
 
     let user = useLoaderData()
 
+    
+
     const [col,setCol] = useState(false)
     const [search,setSearch] = useState('')
     const [followCol,setFollowCol] = useState(false)

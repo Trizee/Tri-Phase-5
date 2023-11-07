@@ -33,7 +33,7 @@ function ProjectCard({project, leftFunc, user, set}){
             {LeftButtonControl()}
             {location.pathname === '/dash' ? <div className="join ml-auto">
             <button className="btn bg-gray-800 text-gray-300 hover:text-white" onClick={()=>navigate(`/room/${project.id}`)} >LAUNCH</button>
-            </div> : <p onClick={()=>preview()} className="ml-auto hover:text-white hover:cursor-pointer p-2 btn bg-gray-800 text-gray-300">PREVIEW</p>}
+            </div> : <p onClick={()=>preview()} className="ml-auto hover:text-white hover:cursor-pointer p-2 btn bg-gray-800 text-gray-300">FULLSCREEN</p>}
             </div>
         </div>
         <form method="dialog" className="modal-backdrop">

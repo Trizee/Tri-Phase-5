@@ -44,15 +44,6 @@ class Follows(db.Model, SerializerMixin):
     follower = db.relationship('User', back_populates='follows', foreign_keys=[following_user])
     following = db.relationship('User', back_populates='followed_by', foreign_keys=[followed_user])
 
-    def validate_relationship(self, key, value):
-        if key == 'following_user':
-            if self.followed_user == value:
-                raise ValueError("Cannot follow a user you are already in a relationship with.")
-        elif key == 'followed_user':
-            if self.following_user == value:
-                raise ValueError("Cannot be followed by a user you are already in a relationship with.")
-        return value
-
 
 class Codes(db.Model, SerializerMixin):
     __tablename__ = 'code_table'
